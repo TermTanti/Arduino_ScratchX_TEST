@@ -545,33 +545,33 @@
   {
     en: 
 	[
-      ['h', 'when device is connected', 'whenConnected'],
-      [' ', 'connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
-      [' ', 'connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
+      ['h', 'When device is connected', 'whenConnected'],
+      [' ', 'Connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
+      [' ', 'Connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
       ['-'],
-      [' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-      [' ', 'set %m.leds brightness to %n%', 'setLED', 'led A', 100],
-      [' ', 'change %m.leds brightness by %n%', 'changeLED', 'led A', 20],
+      [' ', 'Set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
+      [' ', 'Set %m.leds brightness to %n%', 'setLED', 'led A', 100],
+      [' ', 'Change %m.leds brightness by %n%', 'changeLED', 'led A', 20],
       ['-'],
-      [' ', 'rotate %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
-      [' ', 'rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
+      [' ', 'Rotate %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
+      [' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
       ['-'],
-      ['h', 'when %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
+      ['h', 'When %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
       ['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
       ['-'],
-      ['h', 'when %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
-      ['r', 'read %m.hwIn', 'readInput', 'rotation knob'],
+      ['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
+      ['r', 'Read %m.hwIn', 'readInput', 'rotation knob'],
       ['-'],
-      [' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
-      [' ', 'set pin %n to %n%', 'analogWrite', 3, 100],
+      [' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
+      [' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
       ['-'],
-      ['h', 'when pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
-      ['b', 'pin %n on?', 'digitalRead', 1],
+      ['h', 'When pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
+      ['b', 'Pin %n on?', 'digitalRead', 1],
       ['-'],
-      ['h', 'when analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
-      ['r', 'read analog %n', 'analogRead', 0],
+      ['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
+      ['r', 'Read analog %n', 'analogRead', 0],
       ['-'],
-      ['r', 'map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240]
+      ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240]
     ]
   };
 
@@ -593,7 +593,7 @@
   var descriptor = {
     blocks: blocks[lang],
     menus: menus[lang],
-    url: 'http://TermTanti.github.io'
+    url: 'http://TermTanti.github.io/Arduino_ScratchX_TEST'
   };
 
   ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
