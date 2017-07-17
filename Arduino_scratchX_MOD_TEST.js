@@ -496,7 +496,64 @@
     if (!device)
       tryNextDevice();
   };
-
+  //____________________________________
+  ext.MTclock = function(slot1 , slot2, direction){
+	  if (direction = 'clockwise'){
+			digitalLED(slot1,'on');
+			digitalLED(slot2,'off');
+		  }
+	  else if(direction = 'anticlockwise'){
+			digitalLED(slot1,'off');
+			digitalLED(slot2,'on');
+		  }
+	  else if(direction = 'stop'){
+			digitalLED(slot1,'off');
+			digitalLED(slot2,'off');
+		  }
+	  };
+  ext.DCmotor = function(val1, val2, speedV){
+    if (val1 == 'M1'){
+	  hwList.add(A,3);
+	  hwList.add(B,4);
+	  hwList.add(C,7);
+	  }
+	else if (val1 == 'M2'){
+	  hwList.add(A,11);
+	  hwList.add(B,8);
+	  hwList.add(C,12);
+	  }
+	  changeLED(A,speedV);
+	  MTclock(B, C, val2);
+	
+  };
+  ext.MoveRobot = function(direction, speed){
+	  hwList.add(M1A,3);
+	  hwList.add(M1B,4);
+	  hwList.add(M1C,7);
+	  hwList.add(M2A,11);
+	  hwList.add(M2B,8);
+	  hwList.add(M2C,12);
+	  changeLED(M1A, speed);
+	  changeLED(M2A, speed);
+	  if (direction == 'forward'){
+	  MTclock(M1B, M1C, 'clockwise');
+	  MTclock(M2B, M2C, 'anticlockwise');
+	  }
+	  else if (direction == 'backward'){
+	  MTclock(M1B, M1C, 'anticlockwise');
+	  MTclock(M2B, M2C, 'clockwise');
+	  }
+	  else if (direction == 'turn left'){
+	  MTclock(M1B, M1C, 'clockwise');
+	  MTclock(M2B, M2C, 'clockwise');
+	  }
+	  else if (direction == 'turn right'){
+	  MTclock(M1B, M1C, 'anticlockwise');
+	  MTclock(M2B, M2C, 'anticlockwise');
+	  }
+  };
+  
+  //____________________________________
   var poller = null;
   var watchdog = null;
   function tryNextDevice() {
@@ -572,6 +629,8 @@
       ['r', 'Read analog %n', 'analogRead', 0],
       ['-'],
       ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240]
+	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100]
+	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100]
     ]
   };
 
@@ -579,6 +638,9 @@
   {
     en: 
 	{
+	  Mdirect : ['clockwise', 'anticlockwise', 'stop']
+	  directionM : ['forward', 'backward', 'turn left', 'turn right']
+	  motor: ['M1', 'M2']
       buttons: ['button A', 'button B', 'button C', 'button D'],
       btnStates: ['pressed', 'released'],
       hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
