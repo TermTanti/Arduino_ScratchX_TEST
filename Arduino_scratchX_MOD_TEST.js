@@ -389,6 +389,7 @@
 
   ext.connectHW = function(hw, pin) {
     hwList.add(hw, pin);
+	console.log('Connect HW : ' + hw + ' ' + pin);
   };
 
   ext.rotateServo = function(servo, deg) {
