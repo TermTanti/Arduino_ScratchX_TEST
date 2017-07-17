@@ -342,7 +342,11 @@
   }
 
   ext.whenConnected = function() {
-    if (notifyConnection) return true;
+    if (notifyConnection)
+	{
+		console.log('Connected');
+		return true;
+	}
     return false;
   };
 
