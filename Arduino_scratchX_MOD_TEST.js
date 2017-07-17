@@ -628,8 +628,8 @@
       ['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
       ['r', 'Read analog %n', 'analogRead', 0],
       ['-'],
-      ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240]
-	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100]
+      ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
+	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100]
     ]
   };
@@ -638,9 +638,9 @@
   {
     en: 
 	{
-	  Mdirect : ['clockwise', 'anticlockwise', 'stop']
-	  directionM : ['forward', 'backward', 'turn left', 'turn right']
-	  motor: ['M1', 'M2']
+	  Mdirect : ['clockwise', 'anticlockwise', 'stop'],
+	  directionM : ['forward', 'backward', 'turn left', 'turn right'],
+	  motor: ['M1', 'M2'],
       buttons: ['button A', 'button B', 'button C', 'button D'],
       btnStates: ['pressed', 'released'],
       hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
