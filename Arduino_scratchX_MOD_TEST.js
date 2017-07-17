@@ -522,7 +522,7 @@
 	  hwList.add(B,8);
 	  hwList.add(C,12);
 	  }
-	  changeLED(A,speedV);
+	  setLED(A,speedV);
 	  MTclock(B, C, val2);
 	
   };
@@ -533,8 +533,8 @@
 	  hwList.add(M2A,11);
 	  hwList.add(M2B,8);
 	  hwList.add(M2C,12);
-	  changeLED(M1A, speed);
-	  changeLED(M2A, speed);
+	  setLED(M1A, speed);
+	  setLED(M2A, speed);
 	  if (direction == 'forward'){
 	  MTclock(M1B, M1C, 'clockwise');
 	  MTclock(M2B, M2C, 'anticlockwise');
