@@ -522,12 +522,12 @@
 	else if (val1 == 'M2'){
 	  MTclock('M2B', 'M2C', val2);
 	  }
-	  setLED(A,speedV);
+	  setLED('A',speedV);
   };
   
   ext.MoveRobot = function(direction, speed){
-	  setLED(M1A, speed);
-	  setLED(M2A, speed);
+	  setLED('M1A', speed);
+	  setLED('M2A', speed);
 	  if (direction == 'forward'){
 	  MTclock('M1B', 'M1C', 'clockwise');
 	  MTclock('M2B', 'M2C', 'anticlockwise');
