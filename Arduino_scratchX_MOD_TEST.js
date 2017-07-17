@@ -497,7 +497,7 @@
       tryNextDevice();
   };
   
-  //_____________________________________________________________________________________________________________________________________ ¯\_(ツ)_/¯
+  //_____________________________________________________________________________________________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
   
   ext.MTclock = function(slot1 , slot2, direction){
 	  if (direction = 'clockwise'){
@@ -518,11 +518,12 @@
 	  
     if (val1 == 'M1'){
 	  MTclock('M1B', 'M1C', val2);
+	  	  setLED('M1A', speed);
 	  }
 	else if (val1 == 'M2'){
 	  MTclock('M2B', 'M2C', val2);
+	  	  setLED('M2A', speed);
 	  }
-	  setLED('A',speedV);
   };
   
   ext.MoveRobot = function(direction, speed){
