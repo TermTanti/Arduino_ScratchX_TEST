@@ -557,7 +557,7 @@
 	  hwList.connectHW('M1B',4);
 	  hwList.connectHW('M1C',7);
 	  }
-	  if (motor == 'M2'){
+	  else if (motor == 'M2'){
 	  hwList.connectHW('M2A',11);
 	  hwList.connectHW('M2B',8);
 	  hwList.connectHW('M2C',12);
