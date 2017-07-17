@@ -551,13 +551,17 @@
 	  }
   };
   
-  ext.connectMotor = function(){
+  ext.connectMotor = function(motor){
+	  if (motor == 'M1'){
 	  hwList.connectHW('M1A',3);
 	  hwList.connectHW('M1B',4);
 	  hwList.connectHW('M1C',7);
+	  }
+	  if (motor == 'M2'){
 	  hwList.connectHW('M2A',11);
 	  hwList.connectHW('M2B',8);
 	  hwList.connectHW('M2C',12);
+	  }
 	  console.log('Set PIN');
 	  };
   
