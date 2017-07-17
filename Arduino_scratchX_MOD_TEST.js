@@ -496,7 +496,9 @@
     if (!device)
       tryNextDevice();
   };
-  //____________________________________
+  
+  //_____________________________________________________________________________________________________________________________________ ¯_(ツ)_/¯
+  
   ext.MTclock = function(slot1 , slot2, direction){
 	  if (direction = 'clockwise'){
 			digitalLED(slot1,'on');
@@ -511,28 +513,19 @@
 			digitalLED(slot2,'off');
 		  }
 	  };
+	  
   ext.DCmotor = function(val1, val2, speedV){
+	  
     if (val1 == 'M1'){
-	  hwList.add(A,'3');
-	  hwList.add(B,'4');
-	  hwList.add(C,'7');
+	  MTclock('M1B', 'M1C', val2);
 	  }
 	else if (val1 == 'M2'){
-	  hwList.add(A,'11');
-	  hwList.add(B,'8');
-	  hwList.add(C,'12');
+	  MTclock('M2B', 'M2C', val2);
 	  }
 	  setLED(A,speedV);
-	  MTclock(B, C, val2);
-	
   };
+  
   ext.MoveRobot = function(direction, speed){
-	  hwList.add(M1A,'3');
-	  hwList.add(M1B,'4');
-	  hwList.add(M1C,'7');
-	  hwList.add(M2A,'11');
-	  hwList.add(M2B,'8');
-	  hwList.add(M2C,'12');
 	  setLED(M1A, speed);
 	  setLED(M2A, speed);
 	  if (direction == 'forward'){
@@ -552,6 +545,15 @@
 	  MTclock(M2B, M2C, 'anticlockwise');
 	  }
   };
+  
+  ext.connectMotor = function(){
+	  hwList.add('M1A',3);
+	  hwList.add('M1B',4);
+	  hwList.add('M1C',7);
+	  hwList.add('M2A',11);
+	  hwList.add('M2B',8);
+	  hwList.add('M2C',12);
+	  }
   
   //____________________________________
   var poller = null;
@@ -630,7 +632,9 @@
       ['-'],
       ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
 	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
-	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100]
+	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
+	  ['-'],
+	  [' ', 'Connect %m.motor', 'connectMotor', 'M1']
     ]
   };
 
