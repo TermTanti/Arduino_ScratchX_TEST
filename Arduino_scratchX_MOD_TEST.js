@@ -548,13 +548,13 @@
   };
   
   ext.connectMotor = function(){
-	  hwList.add('M1A',3);
-	  hwList.add('M1B',4);
-	  hwList.add('M1C',7);
-	  hwList.add('M2A',11);
-	  hwList.add('M2B',8);
-	  hwList.add('M2C',12);
-	  }
+	  hwList.connectHW('M1A',3);
+	  hwList.connectHW('M1B',4);
+	  hwList.connectHW('M1C',7);
+	  hwList.connectHW('M2A',11);
+	  hwList.connectHW('M2B',8);
+	  hwList.connectHW('M2C',12);
+	  };
   
   //____________________________________
   var poller = null;
