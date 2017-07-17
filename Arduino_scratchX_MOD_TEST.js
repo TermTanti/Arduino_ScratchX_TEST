@@ -513,26 +513,26 @@
 	  };
   ext.DCmotor = function(val1, val2, speedV){
     if (val1 == 'M1'){
-	  hwList.add(A,3);
-	  hwList.add(B,4);
-	  hwList.add(C,7);
+	  hwList.add(A,'3');
+	  hwList.add(B,'4');
+	  hwList.add(C,'7');
 	  }
 	else if (val1 == 'M2'){
-	  hwList.add(A,11);
-	  hwList.add(B,8);
-	  hwList.add(C,12);
+	  hwList.add(A,'11');
+	  hwList.add(B,'8');
+	  hwList.add(C,'12');
 	  }
 	  setLED(A,speedV);
 	  MTclock(B, C, val2);
 	
   };
   ext.MoveRobot = function(direction, speed){
-	  hwList.add(M1A,3);
-	  hwList.add(M1B,4);
-	  hwList.add(M1C,7);
-	  hwList.add(M2A,11);
-	  hwList.add(M2B,8);
-	  hwList.add(M2C,12);
+	  hwList.add(M1A,'3');
+	  hwList.add(M1B,'4');
+	  hwList.add(M1C,'7');
+	  hwList.add(M2A,'11');
+	  hwList.add(M2B,'8');
+	  hwList.add(M2C,'12');
 	  setLED(M1A, speed);
 	  setLED(M2A, speed);
 	  if (direction == 'forward'){
