@@ -414,6 +414,7 @@
     var hw = hwList.search(led);
     if (!hw) return;
     analogWrite(hw.pin, val);
+	console.log('SetLED ' + hw.pin);
     hw.val = val;
   };
 
@@ -500,6 +501,7 @@
   //_____________________________________________________________________________________________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
   
   ext.MTclock = function(slot1 , slot2, direction){
+	  console.log('MTclock ' + slot1 +' ' + slot2);
 	  if (direction = 'clockwise'){
 			digitalLED(slot1,'on');
 			digitalLED(slot2,'off');
@@ -515,20 +517,22 @@
 	  };
 	  
   ext.DCmotor = function(val1, val2, speedV){
-	  
     if (val1 == 'M1'){
 	  MTclock('M1B', 'M1C', val2);
 	  	  setLED('M1A', speed);
+		  console.log('M1 spd : ' + speed);
 	  }
 	else if (val1 == 'M2'){
 	  MTclock('M2B', 'M2C', val2);
 	  	  setLED('M2A', speed);
+		  console.log('M2 spd : ' + speed);
 	  }
   };
   
   ext.MoveRobot = function(direction, speed){
 	  setLED('M1A', speed);
 	  setLED('M2A', speed);
+	  console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
 	  if (direction == 'forward'){
 	  MTclock('M1B', 'M1C', 'clockwise');
 	  MTclock('M2B', 'M2C', 'anticlockwise');
@@ -554,6 +558,7 @@
 	  hwList.connectHW('M2A',11);
 	  hwList.connectHW('M2B',8);
 	  hwList.connectHW('M2C',12);
+	  console.log('Set PIN');
 	  };
   
   //____________________________________
