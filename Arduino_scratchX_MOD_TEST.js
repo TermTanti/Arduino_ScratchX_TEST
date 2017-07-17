@@ -497,7 +497,7 @@
       tryNextDevice();
   };
   
-  //_____________________________________________________________________________________________________________________________________ ¯_(ツ)_/¯
+  //_____________________________________________________________________________________________________________________________________ ¯\_(ツ)_/¯
   
   ext.MTclock = function(slot1 , slot2, direction){
 	  if (direction = 'clockwise'){
@@ -529,20 +529,20 @@
 	  setLED(M1A, speed);
 	  setLED(M2A, speed);
 	  if (direction == 'forward'){
-	  MTclock(M1B, M1C, 'clockwise');
-	  MTclock(M2B, M2C, 'anticlockwise');
+	  MTclock('M1B', 'M1C', 'clockwise');
+	  MTclock('M2B', 'M2C', 'anticlockwise');
 	  }
 	  else if (direction == 'backward'){
-	  MTclock(M1B, M1C, 'anticlockwise');
-	  MTclock(M2B, M2C, 'clockwise');
+	  MTclock('M1B', 'M1C', 'anticlockwise');
+	  MTclock('M2B', 'M2C', 'clockwise');
 	  }
 	  else if (direction == 'turn left'){
-	  MTclock(M1B, M1C, 'clockwise');
-	  MTclock(M2B, M2C, 'clockwise');
+	  MTclock('M1B', 'M1C', 'clockwise');
+	  MTclock('M2B', 'M2C', 'clockwise');
 	  }
 	  else if (direction == 'turn right'){
-	  MTclock(M1B, M1C, 'anticlockwise');
-	  MTclock(M2B, M2C, 'anticlockwise');
+	  MTclock('M1B', 'M1C', 'anticlockwise');
+	  MTclock('M2B', 'M2C', 'anticlockwise');
 	  }
   };
   
