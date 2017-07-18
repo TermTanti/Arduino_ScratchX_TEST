@@ -106,10 +106,10 @@
       for (var i=0; i<this.devices.length; i++) 
 	  {
         if (this.devices[i].name === dev)
-		console.log('serch device result : ' + dev);
+		console.log('search device result : ' + dev);
           return this.devices[i];
       }
-	  console.log('serch device result : Null');
+	  console.log('search device result : Null');
       return null;
     };
   }
