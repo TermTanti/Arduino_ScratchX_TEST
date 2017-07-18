@@ -491,7 +491,7 @@
     // Not currently implemented with serial devices
   };
   
-  ext.test = funtion()
+  ext.test = function()
   {
 	  ext.connectHW('led A',3);
 	  ext.digitalLED('led A','on');  
