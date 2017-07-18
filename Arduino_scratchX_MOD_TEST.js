@@ -521,6 +521,9 @@
   
   ext.MTclock = function(slot1 , slot2, direction){
 	  console.log('MTclock ' + slot1 +' ' + slot2);
+	  var on = 'on',
+	  off = 'off';
+	  
 	  if (direction == 'clockwise'){
 			ext.digitalLED(slot1,'on');
 			ext.digitalLED(slot2,'off');
@@ -535,7 +538,7 @@
 		  }
 	  };
 	  
-  ext.DCmotor = function(val1, val2, speedV){
+  ext.DCmotor = function(val1, val2, speed){
     if (val1 == 'M1'){
 		  ext.MTclock('M1B', 'M1C', val2);
 	  	  ext.setLED('M1A', speed);
@@ -671,7 +674,7 @@
 	  ['-'],
 	  ['-'],
 	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
-	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
+	  [' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 	  ['-'],
 	  [' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
     ]
@@ -687,7 +690,7 @@
       buttons: ['button A', 'button B', 'button C', 'button D'],
       btnStates: ['pressed', 'released'],
       hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
-      hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D'],
+      hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D' , 'M1A_pin' , 'M1B_pin' , 'M1C_pin'],
       leds: ['led A', 'led B', 'led C', 'led D'],
       outputs: ['on', 'off'],
       ops: ['>', '=', '<'],
