@@ -644,7 +644,7 @@
   {
     en: 
 	[
-      ['h', 'When device is connected', 'whenConnected'],
+      ['h', 'WHEN device is connected', 'whenConnected'],
       [' ', 'Connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
       [' ', 'Connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
       ['-'],
