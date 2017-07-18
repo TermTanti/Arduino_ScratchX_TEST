@@ -493,7 +493,7 @@
   
   ext.test = function()
   {
-	  ext.connectHW('led A',3);
+	  ext.connectHW('led A','3');
 	  ext.digitalLED('led A','on');  
   };
 
