@@ -579,7 +579,7 @@
       ['-'],
       ['r', 'map %n from %n %n to %n %n', 'mapValues', 50, 0, 100, -240, 240],
 	  ['-'],
-	  [' ', 'Connect Test ' , 'test']
+	  [' ', 'Connect TEST ' , 'test']
     ]
   };
 
