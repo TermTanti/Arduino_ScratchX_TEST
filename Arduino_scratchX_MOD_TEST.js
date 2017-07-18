@@ -43,7 +43,17 @@
     PULLUP = 0x0B,
     IGNORE = 0x7F,
     TOTAL_PIN_MODES = 13;
-
+	
+  var M1A = 'M1A',
+  M1B = 'M1B',
+  M1C = 'M1C',
+  M2A = 'M2A',
+  M2B = 'M2B',
+  M2C = 'M2C';
+  
+  var anticlockwise = 'anticlockwise',
+  clockwise = 'clockwise';
+  
   var LOW = 0,
     HIGH = 1;
 
@@ -525,73 +535,76 @@
 	  off = 'off';
 	  
 	  if (direction == 'clockwise'){
-			ext.digitalLED(slot1,'on');
-			ext.digitalLED(slot2,'off');
+			ext.digitalLED(slot1,on);
+			ext.digitalLED(slot2,off);
 		  }
 	  else if(direction == 'anticlockwise'){
-			ext.digitalLED(slot1,'off');
-			ext.digitalLED(slot2,'on');
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,on);
 		  }
 	  else if(direction == 'stop'){
-			ext.digitalLED(slot1,'off');
-			ext.digitalLED(slot2,'off');
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,off);
 		  }
 	  };
 	  
   ext.DCmotor = function(val1, val2, speed){
     if (val1 == 'M1'){
-		  ext.MTclock('M1B', 'M1C', val2);
-	  	  ext.setLED('M1A', speed);
+		  ext.MTclock(M1B, M1C, val2);
+	  	  ext.setLED(M1A, speed);
+		  
 		  console.log('M1 spd : ' + speed);
 	  }
+	  
 	else if (val1 == 'M2'){
-	      ext.MTclock('M2B', 'M2C', val2);
-	  	  ext.setLED('M2A', speed);
+	      ext.MTclock(M2B, M2C, val2);
+	  	  ext.setLED(M2A, speed);
+		  
 		  console.log('M2 spd : ' + speed);
 	  }
   };
   
   ext.MoveRobot = function(direction, speed){
-	  ext.setLED('M1A', speed);
-	  ext.setLED('M2A', speed);
+	  ext.setLED(M1A, speed);
+	  ext.setLED(M2A, speed);
 	  console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
 	  if (direction == 'forward'){
-	  ext.MTclock('M1B', 'M1C', 'clockwise');
-	  ext.MTclock('M2B', 'M2C', 'anticlockwise');
+	  ext.MTclock(M1B, M1C, clockwise);
+	  ext.MTclock(M2B, M2C, anticlockwise);
 	  }
 	  else if (direction == 'backward'){
-	  ext.MTclock('M1B', 'M1C', 'anticlockwise');
-	  ext.MTclock('M2B', 'M2C', 'clockwise');
+	  ext.MTclock(M1B, M1C, anticlockwise);
+	  ext.MTclock(M2B, M2C, clockwise);
 	  }
 	  else if (direction == 'turn left'){
-	  ext.MTclock('M1B', 'M1C', 'clockwise');
-	  ext.MTclock('M2B', 'M2C', 'clockwise');
+	  ext.MTclock(M1B, M1C, clockwise);
+	  ext.MTclock(M2B, M2C, clockwise);
 	  }
 	  else if (direction == 'turn right'){
-	  ext.MTclock('M1B', 'M1C', 'anticlockwise');
-	  ext.MTclock('M2B', 'M2C', 'anticlockwise');
+	  ext.MTclock(M1B, M1C, anticlockwise);
+	  ext.MTclock(M2B, M2C, anticlockwise);
 	  }
   };
   
   ext.connectMotor = function(motor){
 	  console.log('SET PIN');
+	  
 	  var M1A_pin = 3,
 	  M1B_pin = 4,
 	  M1C_pin = 7;
-	  
 	  var M2A_pin = 11,
 	  M2B_pin = 8,
 	  M2C_pin = 13;
 	  
 	  if (motor == 'M1'){
-	  ext.connectHW('M1A',M1A_pin);
-	  ext.connectHW('M1B',M1B_pin);
-	  ext.connectHW('M1C',M1C_pin);
+	  ext.connectHW(M1A,M1A_pin);
+	  ext.connectHW(M1B,M1B_pin);
+	  ext.connectHW(M1C,M1C_pin);
 	  }
 	  else if (motor == 'M2'){
-	  ext.connectHW('M2A',M2A_pin);
-	  ext.connectHW('M2B',M2B_pin);
-	  ext.connectHW('M2C',M2C_pin);
+	  ext.connectHW(M2A,M2A_pin);
+	  ext.connectHW(M2B,M2B_pin);
+	  ext.connectHW(M2C,M2C_pin);
 	  }
 	  };
   
