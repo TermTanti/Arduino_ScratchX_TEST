@@ -569,7 +569,7 @@
   };
   
   ext.connectMotor = function(motor){
-	  console.log('Set PIN');
+	  console.log('SET PIN');
 	  if (motor == 'M1'){
 	  ext.connectHW('M1A',3);
 	  ext.connectHW('M1B',4);
@@ -658,6 +658,8 @@
       ['r', 'Read analog %n', 'analogRead', 0],
       ['-'],
       ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
+	  ['-'],
+	  ['-'],
 	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 	  ['-'],
