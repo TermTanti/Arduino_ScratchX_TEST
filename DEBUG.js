@@ -494,9 +494,8 @@
   ext.test = funtion()
   {
 	  ext.connectHW('led A',3);
-	  ext.digitalLED('led A','on');
-	  
-  }
+	  ext.digitalLED('led A','on');  
+  };
 
   var potentialDevices = [];
   ext._deviceConnected = function(dev) {
