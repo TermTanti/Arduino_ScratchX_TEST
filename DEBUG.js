@@ -491,10 +491,10 @@
     // Not currently implemented with serial devices
   };
   
-  ext.test = function()
+  ext.test = function(wah)
   {
-	  ext.connectHW('led A','3');
-	  ext.digitalLED('led A','on');  
+	  ext.connectHW('led A',wah);
+	  ext.digitalLED('led A','on');
   };
 
   var potentialDevices = [];
@@ -578,7 +578,7 @@
       ['-'],
       ['r', 'map %n from %n %n to %n %n', 'mapValues', 50, 0, 100, -240, 240],
 	  ['-'],
-	  [' ', 'Connect Test' , 'test']
+	  [' ', 'Connect Test %n' , 'test' , 2]
     ]
   };
 
