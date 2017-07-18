@@ -572,15 +572,23 @@
   
   ext.connectMotor = function(motor){
 	  console.log('SET PIN');
+	  var M1A_pin = 3,
+	  M1B_pin = 4,
+	  M1C_pin = 7;
+	  
+	  var M2A_pin = 11,
+	  M2B_pin = 8,
+	  M2C_pin = 13;
+	  
 	  if (motor == 'M1'){
-	  ext.connectHW('M1A',3);
-	  ext.connectHW('M1B',4);
-	  ext.connectHW('M1C',7);
+	  ext.connectHW('M1A',M1A_pin);
+	  ext.connectHW('M1B',M1B_pin);
+	  ext.connectHW('M1C',M1C_pin);
 	  }
 	  else if (motor == 'M2'){
-	  ext.connectHW('M2A',11);
-	  ext.connectHW('M2B',8);
-	  ext.connectHW('M2C',12);
+	  ext.connectHW('M2A',M2A_pin);
+	  ext.connectHW('M2B',M2B_pin);
+	  ext.connectHW('M2C',M2C_pin);
 	  }
 	  };
   
