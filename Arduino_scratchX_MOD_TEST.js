@@ -568,6 +568,8 @@
 	  ext.setLED(M1A, speed);
 	  ext.setLED(M2A, speed);
 	  console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
+	  console.log(clockwise  +' : clockwise');
+	  console.log(anticlockwise  +' : anticlockwise');
 	  if (direction == 'forward'){
 	  ext.MTclock(M1B, M1C, clockwise);
 	  ext.MTclock(M2B, M2C, anticlockwise);
