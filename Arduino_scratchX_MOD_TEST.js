@@ -558,14 +558,14 @@
   
   ext.connectMotor = function(motor){
 	  if (motor == 'M1'){
-	  hwList.connectHW('M1A',3);
-	  hwList.connectHW('M1B',4);
-	  hwList.connectHW('M1C',7);
+	  connectHW('M1A',3);
+	  connectHW('M1B',4);
+	  connectHW('M1C',7);
 	  }
 	  else if (motor == 'M2'){
-	  hwList.connectHW('M2A',11);
-	  hwList.connectHW('M2B',8);
-	  hwList.connectHW('M2C',12);
+	  connectHW('M2A',11);
+	  connectHW('M2B',8);
+	  connectHW('M2C',12);
 	  }
 	  console.log('Set PIN');
 	  };
