@@ -450,9 +450,11 @@
 	console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
     if (val == 'on') {
       digitalWrite(hw.pin, HIGH);
+	  console.log('DIGITAL_MESSAGE LED ' + val)
       hw.val = 255;
     } else if (val == 'off') {
       digitalWrite(hw.pin, LOW);
+	  console.log('DIGITAL_MESSAGE LED ' + val)
       hw.val = 0;
     }
   };
