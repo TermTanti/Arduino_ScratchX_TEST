@@ -503,69 +503,69 @@
       tryNextDevice();
   };
   
-  //_____________________________________________________________________________________________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
+  //________________________________________________________________________________¯\_(ツ)_/¯_____________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
   
   ext.MTclock = function(slot1 , slot2, direction){
 	  console.log('MTclock ' + slot1 +' ' + slot2);
 	  if (direction = 'clockwise'){
-			digitalLED(slot1,'on');
-			digitalLED(slot2,'off');
+			ext.digitalLED(slot1,'on');
+			ext.digitalLED(slot2,'off');
 		  }
 	  else if(direction = 'anticlockwise'){
-			digitalLED(slot1,'off');
-			digitalLED(slot2,'on');
+			ext.digitalLED(slot1,'off');
+			ext.digitalLED(slot2,'on');
 		  }
 	  else if(direction = 'stop'){
-			digitalLED(slot1,'off');
-			digitalLED(slot2,'off');
+			ext.digitalLED(slot1,'off');
+			ext.digitalLED(slot2,'off');
 		  }
 	  };
 	  
   ext.DCmotor = function(val1, val2, speedV){
     if (val1 == 'M1'){
-	  MTclock('M1B', 'M1C', val2);
-	  	  setLED('M1A', speed);
+		  ext.MTclock('M1B', 'M1C', val2);
+	  	  ext.setLED('M1A', speed);
 		  console.log('M1 spd : ' + speed);
 	  }
 	else if (val1 == 'M2'){
-	  MTclock('M2B', 'M2C', val2);
-	  	  setLED('M2A', speed);
+	      ext.MTclock('M2B', 'M2C', val2);
+	  	  ext.setLED('M2A', speed);
 		  console.log('M2 spd : ' + speed);
 	  }
   };
   
   ext.MoveRobot = function(direction, speed){
-	  setLED('M1A', speed);
-	  setLED('M2A', speed);
+	  ext.setLED('M1A', speed);
+	  ext.setLED('M2A', speed);
 	  console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
 	  if (direction == 'forward'){
-	  MTclock('M1B', 'M1C', 'clockwise');
-	  MTclock('M2B', 'M2C', 'anticlockwise');
+	  ext.MTclock('M1B', 'M1C', 'clockwise');
+	  ext.MTclock('M2B', 'M2C', 'anticlockwise');
 	  }
 	  else if (direction == 'backward'){
-	  MTclock('M1B', 'M1C', 'anticlockwise');
-	  MTclock('M2B', 'M2C', 'clockwise');
+	  ext.MTclock('M1B', 'M1C', 'anticlockwise');
+	  ext.MTclock('M2B', 'M2C', 'clockwise');
 	  }
 	  else if (direction == 'turn left'){
-	  MTclock('M1B', 'M1C', 'clockwise');
-	  MTclock('M2B', 'M2C', 'clockwise');
+	  ext.MTclock('M1B', 'M1C', 'clockwise');
+	  ext.MTclock('M2B', 'M2C', 'clockwise');
 	  }
 	  else if (direction == 'turn right'){
-	  MTclock('M1B', 'M1C', 'anticlockwise');
-	  MTclock('M2B', 'M2C', 'anticlockwise');
+	  ext.MTclock('M1B', 'M1C', 'anticlockwise');
+	  ext.MTclock('M2B', 'M2C', 'anticlockwise');
 	  }
   };
   
   ext.connectMotor = function(motor){
 	  if (motor == 'M1'){
-	  connectHW('M1A',3);
-	  connectHW('M1B',4);
-	  connectHW('M1C',7);
+	  ext.connectHW('M1A',3);
+	  ext.connectHW('M1B',4);
+	  ext.connectHW('M1C',7);
 	  }
 	  else if (motor == 'M2'){
-	  connectHW('M2A',11);
-	  connectHW('M2B',8);
-	  connectHW('M2C',12);
+	  ext.connectHW('M2A',11);
+	  ext.connectHW('M2B',8);
+	  ext.connectHW('M2C',12);
 	  }
 	  console.log('Set PIN');
 	  };
