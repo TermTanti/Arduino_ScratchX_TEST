@@ -493,8 +493,7 @@
   
   ext.test = function()
   {
-	  var wah = 3;
-	  ext.connectHW('led A',wah);
+	  ext.connectHW('led A',3);
 	  ext.digitalLED('led A','on');
   };
 
@@ -579,7 +578,7 @@
       ['-'],
       ['r', 'map %n from %n %n to %n %n', 'mapValues', 50, 0, 100, -240, 240],
 	  ['-'],
-	  [' ', 'Connect TEST ' , 'test']
+	  [' ', 'Connect TEST 05' , 'test']
     ]
   };
 
