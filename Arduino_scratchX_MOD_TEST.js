@@ -101,6 +101,7 @@
         if (this.devices[i].name === dev)
           return this.devices[i];
       }
+	  console.log("serch device");
       return null;
     };
   }
