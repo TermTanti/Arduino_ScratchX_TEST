@@ -618,7 +618,11 @@
     if (poller) clearInterval(poller);
     device = null;
   };
-
+    ext.test = function()
+  {
+	  ext.connectHW('led A',3);
+	  ext.digitalLED('led A','on');  
+  };
   // Check for GET param 'lang'
   var paramString = window.location.search.replace(/^\?|\/$/g, '');
   var vars = paramString.split("&");
@@ -665,7 +669,9 @@
 	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 	  ['-'],
-	  [' ', 'Connect %m.motor', 'connectMotor', 'M1']
+	  [' ', 'Connect %m.motor', 'connectMotor', 'M1'],
+	  ['-'],
+	  [' ', 'Connect Test' , 'test']
     ]
   };
 
