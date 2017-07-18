@@ -101,7 +101,7 @@
         if (this.devices[i].name === dev)
           return this.devices[i];
       }
-	  console.log('serch device');
+	  console.log('serch device result : Null');
       return null;
     };
   }
@@ -435,6 +435,7 @@
   };
 
   ext.digitalLED = function(led, val) {
+	console.log('DIGITAL_MESSAGE LED' + led + ' ' + val)
     var hw = hwList.search(led);
     if (!hw) return;
     if (val == 'on') {
