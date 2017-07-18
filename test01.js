@@ -620,8 +620,8 @@
   };
     ext.test = function()
   {
-	  ext.connectHW('led A',3);
-	  ext.digitalLED('led A','on');  
+	  ext.connectHW('M1A',3);
+	  ext.digitalLED('M1A','on');  
   };
   // Check for GET param 'lang'
   var paramString = window.location.search.replace(/^\?|\/$/g, '');
