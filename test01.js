@@ -689,7 +689,8 @@
       leds: ['led A', 'led B', 'led C', 'led D'],
       outputs: ['on', 'off'],
       ops: ['>', '=', '<'],
-      servos: ['servo A', 'servo B', 'servo C', 'servo D']
+      servos: ['servo A', 'servo B', 'servo C', 'servo D'],
+	  tesst : ['M1A', 'M1B', 'M1C', 'M2A', 'M2B','M2C', 'M1', 'M2']
     }
   };
 
