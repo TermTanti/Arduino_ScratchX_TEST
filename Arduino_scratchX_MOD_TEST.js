@@ -658,7 +658,7 @@
     en: 
 	[
       ['h', 'WHEN device is connected', 'whenConnected'],
-      [' ', 'Connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
+      [' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
       [' ', 'Connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
       ['-'],
       [' ', 'Set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
