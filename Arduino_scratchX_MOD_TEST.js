@@ -673,7 +673,7 @@
       ['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
 	  ['-'],
 	  ['-'],
-	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
+	  [' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 	  [' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 	  ['-'],
 	  [' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
@@ -691,7 +691,7 @@
       btnStates: ['pressed', 'released'],
       hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
       hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D' , 'M1A_pin' , 'M1B_pin' , 'M1C_pin'],
-      leds: ['led A', 'led B', 'led C', 'led D'],
+      leds: ['led A', 'led B', 'led C', 'led D' , 'M1A_pin' , 'M1B_pin' , 'M1C_pin'],
       outputs: ['on', 'off'],
       ops: ['>', '=', '<'],
       servos: ['servo A', 'servo B', 'servo C', 'servo D']
