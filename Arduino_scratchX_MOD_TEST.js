@@ -320,6 +320,7 @@
   }
 
   function digitalWrite(pin, val) {
+	console.log('Digital write ' + pin + ' ' + val)
     if (!hasCapability(pin, OUTPUT)) {
       console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
       return;
@@ -364,7 +365,7 @@
   };
 
   ext.digitalWrite = function(pin, val) {
-	console.log('Digital write ' + pin + ' ' + val)
+
     if (val == menus[lang]['outputs'][0])
       digitalWrite(pin, HIGH);
     else if (val == menus[lang]['outputs'][1])
@@ -444,10 +445,8 @@
   };
 
   ext.digitalLED = function(led, val) {
-	
     var hw = hwList.search(led);
     if (!hw) return;
-	
 	console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
     if (val == 'on') {
       digitalWrite(hw.pin, HIGH);
