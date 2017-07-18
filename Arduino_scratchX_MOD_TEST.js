@@ -89,14 +89,14 @@
       var device = this.search(dev);
       if (!device) 
 	  {
-		console.log('Add status : !device');
+		console.log('Add Status : !device');
         device = {name: dev, pin: pin, val: 0};
         this.devices.push(device);
       }
 	  
 	  else 
 	  {
-		console.log('Add status : device');
+		console.log('Add Status : device');
         device.pin = pin;
         device.val = 0;
       }
