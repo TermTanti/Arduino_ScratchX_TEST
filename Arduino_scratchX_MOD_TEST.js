@@ -88,9 +88,11 @@
     this.add = function(dev, pin) {
       var device = this.search(dev);
       if (!device) {
+		  console.log('add status : !device');
         device = {name: dev, pin: pin, val: 0};
         this.devices.push(device);
       } else {
+		  console.log('add status : device');
         device.pin = pin;
         device.val = 0;
       }
@@ -99,6 +101,7 @@
     this.search = function(dev) {
       for (var i=0; i<this.devices.length; i++) {
         if (this.devices[i].name === dev)
+		console.log('serch device result : ' + dev);
           return this.devices[i];
       }
 	  console.log('serch device result : Null');
@@ -509,15 +512,15 @@
   
   ext.MTclock = function(slot1 , slot2, direction){
 	  console.log('MTclock ' + slot1 +' ' + slot2);
-	  if (direction = 'clockwise'){
+	  if (direction == 'clockwise'){
 			ext.digitalLED(slot1,'on');
 			ext.digitalLED(slot2,'off');
 		  }
-	  else if(direction = 'anticlockwise'){
+	  else if(direction == 'anticlockwise'){
 			ext.digitalLED(slot1,'off');
 			ext.digitalLED(slot2,'on');
 		  }
-	  else if(direction = 'stop'){
+	  else if(direction == 'stop'){
 			ext.digitalLED(slot1,'off');
 			ext.digitalLED(slot2,'off');
 		  }
