@@ -673,7 +673,7 @@
 	  [' ', 'Set DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 	  [' ', 'Move %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 	  ['-'],
-	  [' ', 'Connect %m.motor', 'connectMotor', 'M1']
+	  [' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
     ]
   };
 
