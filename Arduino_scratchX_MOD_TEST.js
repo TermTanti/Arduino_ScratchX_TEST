@@ -364,6 +364,7 @@
   };
 
   ext.digitalWrite = function(pin, val) {
+	console.log('Digital write ' + pin + ' ' + val)
     if (val == menus[lang]['outputs'][0])
       digitalWrite(pin, HIGH);
     else if (val == menus[lang]['outputs'][1])
