@@ -88,9 +88,11 @@
     this.add = function(dev, pin) {
       var device = this.search(dev);
       if (!device) {
+		  		console.log('Add Status : !device');
         device = {name: dev, pin: pin, val: 0};
         this.devices.push(device);
       } else {
+		  		console.log('Add Status : device');
         device.pin = pin;
         device.val = 0;
       }
@@ -491,11 +493,6 @@
     // Not currently implemented with serial devices
   };
   
-  ext.test = function()
-  {
-	  ext.connectHW('led A',3);
-	  ext.digitalLED('led A','on');
-  };
 
   var potentialDevices = [];
   ext._deviceConnected = function(dev) {
@@ -578,7 +575,6 @@
       ['-'],
       ['r', 'map %n from %n %n to %n %n', 'mapValues', 50, 0, 100, -240, 240],
 	  ['-'],
-	  [' ', 'Connect TEST 05' , 'test']
     ]
   };
 
