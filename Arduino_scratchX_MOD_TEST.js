@@ -87,19 +87,24 @@
 
     this.add = function(dev, pin) {
       var device = this.search(dev);
-      if (!device) {
-		  console.log('add status : !device');
+      if (!device) 
+	  {
+		console.log('add status : !device');
         device = {name: dev, pin: pin, val: 0};
         this.devices.push(device);
-      } else {
-		  console.log('add status : device');
+      }
+	  
+	  else 
+	  {
+		console.log('add status : device');
         device.pin = pin;
         device.val = 0;
       }
     };
 
     this.search = function(dev) {
-      for (var i=0; i<this.devices.length; i++) {
+      for (var i=0; i<this.devices.length; i++) 
+	  {
         if (this.devices[i].name === dev)
 		console.log('serch device result : ' + dev);
           return this.devices[i];
@@ -438,9 +443,11 @@
   };
 
   ext.digitalLED = function(led, val) {
-	console.log('DIGITAL_MESSAGE LED' + led + ' ' + val)
+	
     var hw = hwList.search(led);
     if (!hw) return;
+	
+	console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
     if (val == 'on') {
       digitalWrite(hw.pin, HIGH);
       hw.val = 255;
@@ -562,6 +569,7 @@
   };
   
   ext.connectMotor = function(motor){
+	  console.log('Set PIN');
 	  if (motor == 'M1'){
 	  ext.connectHW('M1A',3);
 	  ext.connectHW('M1B',4);
@@ -572,7 +580,6 @@
 	  ext.connectHW('M2B',8);
 	  ext.connectHW('M2C',12);
 	  }
-	  console.log('Set PIN');
 	  };
   
   //____________________________________
