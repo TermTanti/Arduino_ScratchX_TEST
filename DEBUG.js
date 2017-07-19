@@ -92,10 +92,11 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('Add Status : !device it mean : OK!!');
+				console.log('Add Status : !device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
+
 			else
 			{
 				console.log('Add Status : device');
@@ -110,7 +111,7 @@
 			{
 				if (this.devices[i].name === dev)
 					//console.log('search device result : ' + dev);
-				return this.devices[i];
+					return this.devices[i];
 			}
 			//console.log('search device result : Null');
 			return null;
@@ -119,7 +120,6 @@
 
 	function init()
 	{
-
 		for (var i = 0; i < 16; i++)
 		{
 			var output = new Uint8Array([REPORT_DIGITAL | i, 0x01]);
@@ -373,6 +373,7 @@
 
 	function digitalWrite(pin, val)
 	{
+		console.log('Digital write ' + pin + ' ' + val)
 		if (!hasCapability(pin, OUTPUT))
 		{
 			console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
@@ -408,7 +409,11 @@
 
 	ext.whenConnected = function()
 	{
-		if (notifyConnection) return true;
+		if (notifyConnection)
+		{
+			console.log('Connected');
+			return true;
+		}
 		return false;
 	};
 
@@ -419,6 +424,7 @@
 
 	ext.digitalWrite = function(pin, val)
 	{
+
 		if (val == menus[lang]['outputs'][0])
 			digitalWrite(pin, HIGH);
 		else if (val == menus[lang]['outputs'][1])
@@ -464,6 +470,7 @@
 	ext.connectHW = function(hw, pin)
 	{
 		hwList.add(hw, pin);
+		//console.log('Connect HW : ' + hw + ' ' + pin);
 	};
 
 	ext.rotateServo = function(servo, deg)
@@ -492,6 +499,7 @@
 		var hw = hwList.search(led);
 		if (!hw) return;
 		analogWrite(hw.pin, val);
+		console.log('SetLED ' + hw.pin);
 		hw.val = val;
 	};
 
@@ -510,14 +518,17 @@
 	{
 		var hw = hwList.search(led);
 		if (!hw) return;
+		console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
 		if (val == 'on')
 		{
 			digitalWrite(hw.pin, HIGH);
+			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 255;
 		}
 		else if (val == 'off')
 		{
 			digitalWrite(hw.pin, LOW);
+			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 0;
 		}
 	};
@@ -580,41 +591,6 @@
 		// Not currently implemented with serial devices
 	};
 
-	var M1A = 'M1A',
-		M1B = 'M1B',
-		M1C = 'M1C',
-		M2A = 'M2A',
-		M2B = 'M2B',
-		M2C = 'M2C';
-
-
-	ext.connectMotor = function(motor)
-	{
-		
-		
-	var M1A_pin = 3,
-		M1B_pin = 4,
-		M1C_pin = 7;
-
-	var M2A_pin = 11,
-		M2B_pin = 8,
-		M2C_pin = 13;
-		console.log('SET PIN');
-
-		if (motor == 'M1')
-		{
-			ext.connectHW(M1A,M1A_pin);
-			ext.connectHW(M1B,M1B_pin);
-			ext.connectHW(M1C,M1C_pin);
-		}
-		else if (motor === 'M2')
-		{
-			ext.connectHW(M2A,M2A_pin);
-			ext.connectHW(M2B,M2B_pin);
-			ext.connectHW(M2C,M2C_pin);
-		}
-	};
-
 	var potentialDevices = [];
 	ext._deviceConnected = function(dev)
 	{
@@ -623,6 +599,112 @@
 			tryNextDevice();
 	};
 
+	//________________________________________________________________________________¯\_(ツ)_/¯_____________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
+
+	ext.MTclock = function(slot1, slot2, direction)
+	{
+		console.log('MTclock ' + slot1 +' ' + slot2);
+		var on = 'on',
+			off = 'off';
+
+		if (direction == 'clockwise')
+		{
+			ext.digitalLED(slot1,on);
+			ext.digitalLED(slot2,off);
+		}
+		else if (direction == 'anticlockwise')
+		{
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,on);
+		}
+		else if (direction == 'stop')
+		{
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,off);
+		}
+	};
+
+	ext.DCmotor = function(val1, val2, speed)
+	{
+		if (val1 == 'M1')
+		{
+			ext.MTclock(M1B, M1C, val2);
+			ext.setLED(M1A, speed);
+
+			console.log('M1 spd : ' + speed);
+		}
+
+		else if (val1 == 'M2')
+		{
+			ext.MTclock(M2B, M2C, val2);
+			ext.setLED(M2A, speed);
+
+			console.log('M2 spd : ' + speed);
+		}
+	};
+
+	ext.MoveRobot = function(direction, speed)
+	{
+		ext.setLED(M1A, speed);
+		ext.setLED(M2A, speed);
+
+		if (direction == 'forward')
+		{
+			ext.MTclock(M1B, M1C, clockwise);
+			ext.MTclock(M2B, M2C, anticlockwise);
+		}
+		else if (direction == 'backward')
+		{
+			ext.MTclock(M1B, M1C, anticlockwise);
+			ext.MTclock(M2B, M2C, clockwise);
+		}
+		else if (direction == 'turn left')
+		{
+			ext.MTclock(M1B, M1C, clockwise);
+			ext.MTclock(M2B, M2C, clockwise);
+		}
+		else if (direction == 'turn right')
+		{
+			ext.MTclock(M1B, M1C, anticlockwise);
+			ext.MTclock(M2B, M2C, anticlockwise);
+		}
+	};
+
+	var M1A = 'M1A',
+		M1B = 'M1B',
+		M1C = 'M1C',
+		M2A = 'M2A',
+		M2B = 'M2B',
+		M2C = 'M2C';
+
+	var anticlockwise = 'anticlockwise',
+		clockwise = 'clockwise';
+
+	ext.connectMotor = function(motor)
+	{
+		var M1A_pin = 3,
+			M1B_pin = 4,
+			M1C_pin = 7;
+
+		var M2A_pin = 11,
+			M2B_pin = 8,
+			M2C_pin = 13;
+		console.log('SET PIN');
+
+		if (motor == 'M1')
+		{
+			ext.connectHW(M1A,M1A_pin);
+			ext.connectHW(M1B,M1B_pin);
+			ext.connectHW(M1C,M1C_pin);
+		}
+		else if (motor == 'M2')
+		{
+			ext.connectHW(M2A,M2A_pin);
+			ext.connectHW(M2B,M2B_pin);
+			ext.connectHW(M2C,M2C_pin);
+		}
+	};
+	//____________________________________
 	var poller = null;
 	var watchdog = null;
 	function tryNextDevice()
@@ -675,34 +757,39 @@
 
 	var blocks =
 	{
-		en: [
+		en:
+		[
 			['h', 'WHEN device is connected', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-			[' ', 'set %m.leds brightness to %n%', 'setLED', 'led A', 100],
-			[' ', 'change %m.leds brightness by %n%', 'changeLED', 'led A', 20],
+			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
+			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
-			[' ', 'rotate %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
-			[' ', 'rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
+			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
+			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			['h', 'when %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
+			['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
 			['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
 			['-'],
-			['h', 'when %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
+			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
 			['r', 'READ %m.hwIn', 'readInput', 'rotation knob'],
 			['-'],
-			[' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
-			[' ', 'set pin %n to %n%', 'analogWrite', 3, 100],
+			[' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
+			[' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
 			['-'],
-			['h', 'when PIN %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
-			['b', 'pin %n on?', 'digitalRead', 1],
+			['h', 'When pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
+			['b', 'Pin %n on?', 'digitalRead', 1],
 			['-'],
-			['h', 'when analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
-			['r', 'read analog %n', 'analogRead', 0],
+			['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
+			['r', 'Read analog %n', 'analogRead', 0],
 			['-'],
-			['r', 'map %n from %n %n to %n %n', 'mapValues', 50, 0, 100, -240, 240],
+			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
+			['-'],
+			['-'],
+			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
+			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
 		]
@@ -710,16 +797,19 @@
 
 	var menus =
 	{
-		en: {
+		en:
+		{
+			Mdirect : ['clockwise', 'anticlockwise', 'stop'],
+			directionM : ['forward', 'backward', 'turn left', 'turn right'],
 			buttons: ['button A', 'button B', 'button C', 'button D'],
 			btnStates: ['pressed', 'released'],
 			hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
-			hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D'],
-			leds: ['led A', 'led B', 'led C', 'led D'],
+			hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
+			leds: ['led A', 'led B', 'led C', 'led D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
 			outputs: ['on', 'off'],
 			ops: ['>', '=', '<'],
 			servos: ['servo A', 'servo B', 'servo C', 'servo D'],
-			motor: ['M1','M2']
+			motor: ['M1', 'M2']
 		}
 	};
 

@@ -92,14 +92,12 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('Add Status : !device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
 
 			else
 			{
-				console.log('Add Status : device');
 				device.pin = pin;
 				device.val = 0;
 			}
@@ -110,10 +108,8 @@
 			for (var i=0; i<this.devices.length; i++)
 			{
 				if (this.devices[i].name === dev)
-					//console.log('search device result : ' + dev);
 					return this.devices[i];
 			}
-			//console.log('search device result : Null');
 			return null;
 		};
 	}
@@ -373,7 +369,6 @@
 
 	function digitalWrite(pin, val)
 	{
-		console.log('Digital write ' + pin + ' ' + val)
 		if (!hasCapability(pin, OUTPUT))
 		{
 			console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
@@ -411,7 +406,6 @@
 	{
 		if (notifyConnection)
 		{
-			console.log('Connected');
 			return true;
 		}
 		return false;
@@ -470,7 +464,6 @@
 	ext.connectHW = function(hw, pin)
 	{
 		hwList.add(hw, pin);
-		//console.log('Connect HW : ' + hw + ' ' + pin);
 	};
 
 	ext.rotateServo = function(servo, deg)
@@ -499,7 +492,6 @@
 		var hw = hwList.search(led);
 		if (!hw) return;
 		analogWrite(hw.pin, val);
-		console.log('SetLED ' + hw.pin);
 		hw.val = val;
 	};
 
@@ -518,17 +510,14 @@
 	{
 		var hw = hwList.search(led);
 		if (!hw) return;
-		console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
 		if (val == 'on')
 		{
 			digitalWrite(hw.pin, HIGH);
-			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 255;
 		}
 		else if (val == 'off')
 		{
 			digitalWrite(hw.pin, LOW);
-			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 0;
 		}
 	};
@@ -603,7 +592,6 @@
 
 	ext.MTclock = function(slot1, slot2, direction)
 	{
-		console.log('MTclock ' + slot1 +' ' + slot2);
 		var on = 'on',
 			off = 'off';
 
@@ -631,7 +619,6 @@
 			ext.MTclock(M1B, M1C, val2);
 			ext.setLED(M1A, speed);
 
-			console.log('M1 spd : ' + speed);
 		}
 
 		else if (val1 == 'M2')
@@ -639,7 +626,6 @@
 			ext.MTclock(M2B, M2C, val2);
 			ext.setLED(M2A, speed);
 
-			console.log('M2 spd : ' + speed);
 		}
 	};
 
@@ -689,7 +675,6 @@
 		var M2A_pin = 11,
 			M2B_pin = 8,
 			M2C_pin = 13;
-		console.log('SET PIN');
 
 		if (motor == 'M1')
 		{
