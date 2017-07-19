@@ -610,77 +610,77 @@
 	};
 
 	//________________________________________________________________________________¯\_(ツ)_/¯_____________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
-
-	ext.MTclock = function(slot1, slot2, direction)
-	{
-		console.log('MTclock ' + slot1 +' ' + slot2);
-		var on = 'on',
-			off = 'off';
-
-		if (direction == 'clockwise')
-		{
-			ext.digitalLED(slot1,on);
-			ext.digitalLED(slot2,off);
-		}
-		else if (direction == 'anticlockwise')
-		{
-			ext.digitalLED(slot1,off);
-			ext.digitalLED(slot2,on);
-		}
-		else if (direction == 'stop')
-		{
-			ext.digitalLED(slot1,off);
-			ext.digitalLED(slot2,off);
-		}
-	};
-
-	ext.DCmotor = function(val1, val2, speed)
-	{
-		if (val1 == 'M1')
-		{
-			ext.MTclock(M1B, M1C, val2);
-			ext.setLED(M1A, speed);
-
-			console.log('M1 spd : ' + speed);
-		}
-
-		else if (val1 == 'M2')
-		{
-			ext.MTclock(M2B, M2C, val2);
-			ext.setLED(M2A, speed);
-
-			console.log('M2 spd : ' + speed);
-		}
-	};
-
-	ext.MoveRobot = function(direction, speed)
-	{
-		ext.setLED(M1A, speed);
-		ext.setLED(M2A, speed);
-		console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
-		console.log(clockwise  +' : clockwise');
-		console.log(anticlockwise  +' : anticlockwise');
-		if (direction == 'forward')
-		{
-			ext.MTclock(M1B, M1C, clockwise);
-			ext.MTclock(M2B, M2C, anticlockwise);
-		}
-		else if (direction == 'backward')
-		{
-			ext.MTclock(M1B, M1C, anticlockwise);
-			ext.MTclock(M2B, M2C, clockwise);
-		}
-		else if (direction == 'turn left')
-		{
-			ext.MTclock(M1B, M1C, clockwise);
-			ext.MTclock(M2B, M2C, clockwise);
-		}
-		else if (direction == 'turn right')
-		{
-			ext.MTclock(M1B, M1C, anticlockwise);
-			ext.MTclock(M2B, M2C, anticlockwise);
-		}
-	};
+//
+	//ext.MTclock = function(slot1, slot2, direction)
+	//{
+		//console.log('MTclock ' + slot1 +' ' + slot2);
+		//var on = 'on',
+			//off = 'off';
+//
+		//if (direction == 'clockwise')
+		//{
+			//ext.digitalLED(slot1,on);
+			//ext.digitalLED(slot2,off);
+		//}
+		//else if (direction == 'anticlockwise')
+		//{
+			//ext.digitalLED(slot1,off);
+			//ext.digitalLED(slot2,on);
+		//}
+		//else if (direction == 'stop')
+		//{
+			//ext.digitalLED(slot1,off);
+			//ext.digitalLED(slot2,off);
+		//}
+	//};
+//
+	//ext.DCmotor = function(val1, val2, speed)
+	//{
+		//if (val1 == 'M1')
+		//{
+			//ext.MTclock(M1B, M1C, val2);
+			//ext.setLED(M1A, speed);
+//
+			//console.log('M1 spd : ' + speed);
+		//}
+//
+		//else if (val1 == 'M2')
+		//{
+			//ext.MTclock(M2B, M2C, val2);
+			//ext.setLED(M2A, speed);
+//
+			//console.log('M2 spd : ' + speed);
+		//}
+	//};
+//
+	//ext.MoveRobot = function(direction, speed)
+	//{
+		//ext.setLED(M1A, speed);
+		//ext.setLED(M2A, speed);
+		//console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
+		//console.log(clockwise  +' : clockwise');
+		//console.log(anticlockwise  +' : anticlockwise');
+		//if (direction == 'forward')
+		//{
+			//ext.MTclock(M1B, M1C, clockwise);
+			//ext.MTclock(M2B, M2C, anticlockwise);
+		//}
+		//else if (direction == 'backward')
+		//{
+			//ext.MTclock(M1B, M1C, anticlockwise);
+			//ext.MTclock(M2B, M2C, clockwise);
+		//}
+		//else if (direction == 'turn left')
+		//{
+			//ext.MTclock(M1B, M1C, clockwise);
+			//ext.MTclock(M2B, M2C, clockwise);
+		//}
+		//else if (direction == 'turn right')
+		//{
+			//ext.MTclock(M1B, M1C, anticlockwise);
+			//ext.MTclock(M2B, M2C, anticlockwise);
+		//}
+	//};
 
 	ext.connectMotor = function(motor)
 	{
