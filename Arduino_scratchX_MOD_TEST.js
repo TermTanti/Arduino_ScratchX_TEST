@@ -689,6 +689,19 @@
 			ext.connectHW(M2C,M2C_pin);
 		}
 	};
+	var R_btn = 'R_btn',
+		G_btn = 'G_btn',
+		B_btn = 'B_btn';
+	ext.setRGB = function()
+	{
+		var R_pin = 6,
+			G_pin = 9,
+			B_pin = 10,
+
+			ext.connectHW(R_btn,R_pin);
+		ext.connectHW(G_btn,G_pin);
+		ext.connectHW(B_btn,B_pin);
+	};
 	//____________________________________
 	var poller = null;
 	var watchdog = null;
@@ -776,7 +789,8 @@
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
-			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
+			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
+			[' ', 'Set led RGB','setRGB']
 		]
 	};
 
