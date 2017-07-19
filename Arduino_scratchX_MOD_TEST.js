@@ -766,7 +766,7 @@
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-			[' ', 'Set %m.leds brightness to %n%', 'setLED', 'led A', 100],
+			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
 			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'Rotate %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
