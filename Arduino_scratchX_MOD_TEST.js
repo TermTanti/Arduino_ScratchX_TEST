@@ -110,10 +110,10 @@
 			for (var i=0; i<this.devices.length; i++)
 			{
 				if (this.devices[i].name === dev)
-					console.log('search device result : ' + dev);
-				return this.devices[i];
+					//console.log('search device result : ' + dev);
+					return this.devices[i];
 			}
-			console.log('search device result : Null');
+			//console.log('search device result : Null');
 			return null;
 		};
 	}
@@ -600,77 +600,75 @@
 	};
 
 	//________________________________________________________________________________¯\_(ツ)_/¯_____________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
-//
-	//ext.MTclock = function(slot1, slot2, direction)
-	//{
-	//console.log('MTclock ' + slot1 +' ' + slot2);
-	//var on = 'on',
-	//off = 'off';
-//
-	//if (direction == 'clockwise')
-	//{
-	//ext.digitalLED(slot1,on);
-	//ext.digitalLED(slot2,off);
-	//}
-	//else if (direction == 'anticlockwise')
-	//{
-	//ext.digitalLED(slot1,off);
-	//ext.digitalLED(slot2,on);
-	//}
-	//else if (direction == 'stop')
-	//{
-	//ext.digitalLED(slot1,off);
-	//ext.digitalLED(slot2,off);
-	//}
-	//};
-//
-	//ext.DCmotor = function(val1, val2, speed)
-	//{
-	//if (val1 == 'M1')
-	//{
-	//ext.MTclock(M1B, M1C, val2);
-	//ext.setLED(M1A, speed);
-//
-	//console.log('M1 spd : ' + speed);
-	//}
-//
-	//else if (val1 == 'M2')
-	//{
-	//ext.MTclock(M2B, M2C, val2);
-	//ext.setLED(M2A, speed);
-//
-	//console.log('M2 spd : ' + speed);
-	//}
-	//};
-//
-	//ext.MoveRobot = function(direction, speed)
-	//{
-	//ext.setLED(M1A, speed);
-	//ext.setLED(M2A, speed);
-	//console.log('Moving : ' + direction + ' ' + ' Spd : ' + speed);
-	//console.log(clockwise  +' : clockwise');
-	//console.log(anticlockwise  +' : anticlockwise');
-	//if (direction == 'forward')
-	//{
-	//ext.MTclock(M1B, M1C, clockwise);
-	//ext.MTclock(M2B, M2C, anticlockwise);
-	//}
-	//else if (direction == 'backward')
-	//{
-	//ext.MTclock(M1B, M1C, anticlockwise);
-	//ext.MTclock(M2B, M2C, clockwise);
-	//}
-	//else if (direction == 'turn left')
-	//{
-	//ext.MTclock(M1B, M1C, clockwise);
-	//ext.MTclock(M2B, M2C, clockwise);
-	//}
-	//else if (direction == 'turn right')
-	//{
-	//ext.MTclock(M1B, M1C, anticlockwise);
-	//ext.MTclock(M2B, M2C, anticlockwise);
-	//}
-	//};
+
+	ext.MTclock = function(slot1, slot2, direction)
+	{
+		console.log('MTclock ' + slot1 +' ' + slot2);
+		var on = 'on',
+			off = 'off';
+
+		if (direction == 'clockwise')
+		{
+			ext.digitalLED(slot1,on);
+			ext.digitalLED(slot2,off);
+		}
+		else if (direction == 'anticlockwise')
+		{
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,on);
+		}
+		else if (direction == 'stop')
+		{
+			ext.digitalLED(slot1,off);
+			ext.digitalLED(slot2,off);
+		}
+	};
+
+	ext.DCmotor = function(val1, val2, speed)
+	{
+		if (val1 == 'M1')
+		{
+			ext.MTclock(M1B, M1C, val2);
+			ext.setLED(M1A, speed);
+
+			console.log('M1 spd : ' + speed);
+		}
+
+		else if (val1 == 'M2')
+		{
+			ext.MTclock(M2B, M2C, val2);
+			ext.setLED(M2A, speed);
+
+			console.log('M2 spd : ' + speed);
+		}
+	};
+
+	ext.MoveRobot = function(direction, speed)
+	{
+		ext.setLED(M1A, speed);
+		ext.setLED(M2A, speed);
+
+		if (direction == 'forward')
+		{
+			ext.MTclock(M1B, M1C, clockwise);
+			ext.MTclock(M2B, M2C, anticlockwise);
+		}
+		else if (direction == 'backward')
+		{
+			ext.MTclock(M1B, M1C, anticlockwise);
+			ext.MTclock(M2B, M2C, clockwise);
+		}
+		else if (direction == 'turn left')
+		{
+			ext.MTclock(M1B, M1C, clockwise);
+			ext.MTclock(M2B, M2C, clockwise);
+		}
+		else if (direction == 'turn right')
+		{
+			ext.MTclock(M1B, M1C, anticlockwise);
+			ext.MTclock(M2B, M2C, anticlockwise);
+		}
+	};
 
 	var M1A = 'M1A',
 		M1B = 'M1B',
@@ -772,11 +770,11 @@
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			['h', 'When %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
+			['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
 			['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
 			['-'],
 			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
-			['r', 'Read %m.hwIn', 'readInput', 'rotation knob'],
+			['r', 'READ %m.hwIn', 'readInput', 'rotation knob'],
 			['-'],
 			[' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
 			[' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
