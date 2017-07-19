@@ -745,8 +745,8 @@
 		en:
 		[
 			['h', 'WHEN device is connected', 'whenConnected'],
-			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
-			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
+			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
+			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
@@ -755,11 +755,11 @@
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
-			['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
-			['-'],
-			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
-			['r', 'READ %m.hwIn', 'readInput', 'rotation knob'],
+			//['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
+			//['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
+			//['-'],
+			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
+			['r', 'READ %m.hwIn', 'readInput', 'In0'],
 			['-'],
 			[' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
 			[' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
@@ -770,7 +770,7 @@
 			['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
 			['r', 'Read analog %n', 'analogRead', 0],
 			['-'],
-			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
+			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
 			['-'],
 			['-'],
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
@@ -786,9 +786,9 @@
 		{
 			Mdirect : ['clockwise', 'anticlockwise', 'stop'],
 			directionM : ['forward', 'backward', 'turn left', 'turn right'],
-			buttons: ['button A', 'button B', 'button C', 'button D'],
+			//buttons: ['button A', 'button B', 'button C', 'button D'],
 			btnStates: ['pressed', 'released'],
-			hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
+			hwIn: ['In0', 'In1', 'In2', 'In3', 'In4'],
 			hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
 			leds: ['led A', 'led B', 'led C', 'led D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
 			outputs: ['on', 'off'],
@@ -805,6 +805,6 @@
 		url: 'http://TermTanti.github.io/Arduino_ScratchX_TEST'
 	};
 
-	ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
+	ScratchExtensions.register('ext Experiment for Arduino', descriptor, ext, {type:'serial'});
 
 })({});
