@@ -684,15 +684,14 @@
 
 	ext.connectMotor = function(motor)
 	{
+	var M1A_pin = 3,
+		M1B_pin = 4,
+		M1C_pin = 7;
+
+	var M2A_pin = 11,
+		M2B_pin = 8,
+		M2C_pin = 13;
 		console.log('SET PIN');
-
-		var M1A_pin = 3,
-			M1B_pin = 4,
-			M1C_pin = 7;
-
-		var M2A_pin = 11,
-			M2B_pin = 8,
-			M2C_pin = 13;
 
 		if (motor == 'M1')
 		{
@@ -700,14 +699,13 @@
 			ext.connectHW(M1B,M1B_pin);
 			ext.connectHW(M1C,M1C_pin);
 		}
-		else if (motor == 'M2')
+		else if (motor === 'M2')
 		{
 			ext.connectHW(M2A,M2A_pin);
 			ext.connectHW(M2B,M2B_pin);
 			ext.connectHW(M2C,M2C_pin);
 		}
 	};
-
 	//____________________________________
 	var poller = null;
 	var watchdog = null;
@@ -767,9 +765,9 @@
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
 			['-'],
-			[' ', 'Set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
+			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'Set %m.leds brightness to %n%', 'setLED', 'led A', 100],
-			[' ', 'Change %m.leds brightness by %n%', 'changeLED', 'led A', 20],
+			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'Rotate %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
