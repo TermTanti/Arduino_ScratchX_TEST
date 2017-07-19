@@ -585,6 +585,11 @@
 		M2B = 'M2B',
 		M2C = 'M2C';
 
+
+	ext.connectMotor = function(motor)
+	{
+		
+		
 	var M1A_pin = '3',
 		M1B_pin = '4',
 		M1C_pin = '7';
@@ -592,9 +597,6 @@
 	var M2A_pin = 11,
 		M2B_pin = 8,
 		M2C_pin = 13;
-
-	ext.connectMotor = function(motor)
-	{
 		console.log('SET PIN');
 
 		if (motor === 'M1')
@@ -674,7 +676,7 @@
 		en: [
 			['h', 'WHEN device is connected', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
-			[' ', 'connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
+			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
 			['-'],
 			[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'set %m.leds brightness to %n%', 'setLED', 'led A', 100],
