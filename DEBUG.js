@@ -714,7 +714,8 @@
 			leds: ['led A', 'led B', 'led C', 'led D'],
 			outputs: ['on', 'off'],
 			ops: ['>', '=', '<'],
-			servos: ['servo A', 'servo B', 'servo C', 'servo D']
+			servos: ['servo A', 'servo B', 'servo C', 'servo D'],
+			motor: ['M1','M2']
 		}
 	};
 
