@@ -109,8 +109,10 @@
 			for (var i=0; i<this.devices.length; i++)
 			{
 				if (this.devices[i].name === dev)
-					return this.devices[i];
+					console.log('search device result : ' + dev);
+				return this.devices[i];
 			}
+			console.log('search device result : Null');
 			return null;
 		};
 	}
@@ -689,7 +691,7 @@
 			['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
 			['-'],
 			['h', 'when %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
-			['r', 'read %m.hwIn', 'readInput', 'rotation knob'],
+			['r', 'READ %m.hwIn', 'readInput', 'rotation knob'],
 			['-'],
 			[' ', 'set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
 			[' ', 'set pin %n to %n%', 'analogWrite', 3, 100],
