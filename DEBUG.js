@@ -92,7 +92,7 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('Add Status : !device');
+				console.log('Add Status : !device it mean : OK!!');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
@@ -673,7 +673,7 @@
 	{
 		en: [
 			['h', 'WHEN device is connected', 'whenConnected'],
-			[' ', 'connect %m.hwOut to pin %n', 'connectHW', 'led A', 3],
+			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
 			[' ', 'connect %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
 			['-'],
 			[' ', 'set %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
