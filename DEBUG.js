@@ -714,6 +714,7 @@
 
 	function sleep(milliseconds)
 	{
+		console.log('SLEEP');
 		var start = new Date().getTime();
 		for (var i = 0; i < 1e7; i++)
 		{
@@ -737,6 +738,7 @@
 
 	ext.ultrasonic_distance = function()
 	{
+		console.log('Ultrasonic distance');
 		var duration = 0;
 		var distance = 0;
 		var ping = 0;
@@ -839,7 +841,7 @@
 			['h', 'WHEN pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
 			['b', 'PIN %n on?', 'digitalRead', 1],
 			['-'],
-			['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
+			['h', 'WHEN analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
 			['r', 'Read analog %n', 'analogRead', 0],
 			['-'],
 			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
