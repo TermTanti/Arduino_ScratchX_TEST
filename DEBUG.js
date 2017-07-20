@@ -92,14 +92,12 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('Add Status : !device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
 
 			else
 			{
-				console.log('Add Status : device');
 				device.pin = pin;
 				device.val = 0;
 			}
@@ -110,10 +108,8 @@
 			for (var i=0; i<this.devices.length; i++)
 			{
 				if (this.devices[i].name === dev)
-					//console.log('search device result : ' + dev);
 					return this.devices[i];
 			}
-			//console.log('search device result : Null');
 			return null;
 		};
 	}
@@ -373,7 +369,6 @@
 
 	function digitalWrite(pin, val)
 	{
-		console.log('Digital write ' + pin + ' ' + val)
 		if (!hasCapability(pin, OUTPUT))
 		{
 			console.log('ERROR: valid output pins are ' + pinModes[OUTPUT].join(', '));
@@ -411,7 +406,6 @@
 	{
 		if (notifyConnection)
 		{
-			console.log('Connected');
 			return true;
 		}
 		return false;
@@ -470,7 +464,6 @@
 	ext.connectHW = function(hw, pin)
 	{
 		hwList.add(hw, pin);
-		//console.log('Connect HW : ' + hw + ' ' + pin);
 	};
 
 	ext.rotateServo = function(servo, deg)
@@ -499,7 +492,6 @@
 		var hw = hwList.search(led);
 		if (!hw) return;
 		analogWrite(hw.pin, val);
-		console.log('SetLED ' + hw.pin);
 		hw.val = val;
 	};
 
@@ -518,17 +510,14 @@
 	{
 		var hw = hwList.search(led);
 		if (!hw) return;
-		console.log('DIGITAL_MESSAGE LED ' + led + ' ' + val)
 		if (val == 'on')
 		{
 			digitalWrite(hw.pin, HIGH);
-			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 255;
 		}
 		else if (val == 'off')
 		{
 			digitalWrite(hw.pin, LOW);
-			console.log('DIGITAL_MESSAGE LED ' + val)
 			hw.val = 0;
 		}
 	};
@@ -601,11 +590,21 @@
 
 	//________________________________________________________________________________¯\_(ツ)_/¯_____________________________________________________ ¯\_(ツ)_/¯¯\_(ツ)_/¯
 
+	var M1A = 'M1A',
+		M1B = 'M1B',
+		M1C = 'M1C',
+		M2A = 'M2A',
+		M2B = 'M2B',
+		M2C = 'M2C';
+
+	var anticlockwise = 'anticlockwise',
+		clockwise = 'clockwise';
+
+	var on = 'on',
+		off = 'off';
+
 	ext.MTclock = function(slot1, slot2, direction)
 	{
-		console.log('MTclock ' + slot1 +' ' + slot2);
-		var on = 'on',
-			off = 'off';
 
 		if (direction == 'clockwise')
 		{
@@ -631,7 +630,6 @@
 			ext.MTclock(M1B, M1C, val2);
 			ext.setLED(M1A, speed);
 
-			console.log('M1 spd : ' + speed);
 		}
 
 		else if (val1 == 'M2')
@@ -639,7 +637,6 @@
 			ext.MTclock(M2B, M2C, val2);
 			ext.setLED(M2A, speed);
 
-			console.log('M2 spd : ' + speed);
 		}
 	};
 
@@ -670,16 +667,6 @@
 		}
 	};
 
-	var M1A = 'M1A',
-		M1B = 'M1B',
-		M1C = 'M1C',
-		M2A = 'M2A',
-		M2B = 'M2B',
-		M2C = 'M2C';
-
-	var anticlockwise = 'anticlockwise',
-		clockwise = 'clockwise';
-
 	ext.connectMotor = function(motor)
 	{
 		var M1A_pin = 3,
@@ -689,7 +676,6 @@
 		var M2A_pin = 11,
 			M2B_pin = 8,
 			M2C_pin = 13;
-		console.log('SET PIN');
 
 		if (motor == 'M1')
 		{
@@ -703,6 +689,65 @@
 			ext.connectHW(M2B,M2B_pin);
 			ext.connectHW(M2C,M2C_pin);
 		}
+	};
+	var R_btn = 'R_btn',
+		G_btn = 'G_btn',
+		B_btn = 'B_btn';
+
+	ext.setRGB = function()
+	{
+
+		var R_pin = 6,
+			G_pin = 9,
+			B_pin = 10;
+		ext.connectHW(R_btn,R_pin);
+		ext.connectHW(G_btn,G_pin);
+		ext.connectHW(B_btn,B_pin);
+	};
+
+	ext.changeRGB = function( R_val, G_val, B_val)
+	{
+		ext.setLED(R_btn, R_val);
+		ext.setLED(G_btn, G_val);
+		ext.setLED(B_btn, B_val);
+	};
+
+	function sleep(milliseconds)
+	{
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++)
+		{
+			if ((new Date().getTime() - start) > milliseconds)
+			{
+				break;
+			}
+		}
+	}
+
+	var _trig = 'trig',
+		_echo = 'echo';
+
+	ext.set_ultrasonic = function()
+	{
+		var trig_pin = 2,
+			echo_pin = 12;
+		ext.connectHW(_trig,trig_pin);
+		ext.connectHW(_echo,echo_pin);
+	};
+
+	ext.ultrasonic_distance = function()
+	{
+		var duration = 0;
+		var distance = 0;
+		var ping = new Date().getTime();
+		ext.digitalLED(_trig,off);
+		sleep(2);
+		ext.digitalLED(slot2,on);
+		sleep(10);
+		ext.digitalLED(_trig,off);
+		duration = new Date().getTime() - ping;
+		distance = duration * 18 / 10000;
+		return Math.round(distance);
 	};
 
 	//____________________________________
@@ -761,8 +806,8 @@
 		en:
 		[
 			['h', 'WHEN device is connected', 'whenConnected'],
-			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 3],
-			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'rotation knob', 0],
+			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
+			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
@@ -771,11 +816,8 @@
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
-			['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
-			['-'],
-			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'rotation knob', '>', 50],
-			['r', 'READ %m.hwIn', 'readInput', 'rotation knob'],
+			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
+			['r', 'READ %m.hwIn', 'readInput', 'In0'],
 			['-'],
 			[' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
 			[' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
@@ -786,13 +828,18 @@
 			['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
 			['r', 'Read analog %n', 'analogRead', 0],
 			['-'],
-			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -240, 240],
+			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
 			['-'],
 			['-'],
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
-			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1']
+			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
+			[' ', 'Set led RGB','setRGB'],
+			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			['-'],
+			[' ', 'CONNECT Ultrasonic_distance sensor', 'set_ultrasonic'],
+			['r', 'Ultrasonic distance','ultrasonic_distance']
 		]
 	};
 
@@ -802,9 +849,8 @@
 		{
 			Mdirect : ['clockwise', 'anticlockwise', 'stop'],
 			directionM : ['forward', 'backward', 'turn left', 'turn right'],
-			buttons: ['button A', 'button B', 'button C', 'button D'],
 			btnStates: ['pressed', 'released'],
-			hwIn: ['rotation knob', 'light sensor', 'temperature sensor'],
+			hwIn: ['In0', 'In1', 'In2', 'In3', 'In4'],
 			hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
 			leds: ['led A', 'led B', 'led C', 'led D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
 			outputs: ['on', 'off'],
@@ -821,6 +867,6 @@
 		url: 'http://TermTanti.github.io/Arduino_ScratchX_TEST'
 	};
 
-	ScratchExtensions.register('Arduino', descriptor, ext, {type:'serial'});
+	ScratchExtensions.register('ext Experiment for Arduino', descriptor, ext, {type:'serial'});
 
 })({});
