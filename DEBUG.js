@@ -829,7 +829,7 @@
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
+			['h', 'WHEN %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
 			['r', 'READ %m.hwIn', 'readInput', 'In0'],
 			['-'],
 			[' ', 'Set pin %n %m.outputs', 'digitalWrite', 1, 'on'],
