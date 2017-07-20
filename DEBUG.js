@@ -739,15 +739,26 @@
 	{
 		var duration = 0;
 		var distance = 0;
-		var ping = new Date().getTime();
+		var ping = 0;
+		var flag = true;
 		ext.digitalLED(_trig,off);
 		sleep(2);
-		ext.digitalLED(slot2,on);
+		ext.digitalLED(_trig,on);
 		sleep(10);
 		ext.digitalLED(_trig,off);
-		duration = new Date().getTime() - ping;
-		distance = duration * 18 / 10000;
-		return Math.round(distance);
+
+		if (digitalRead(echo_pin) && flag)
+		{
+			ping = new Date().getTime();
+			flag = false;
+		}
+
+		if (!digitalRead(echo_pin) && !flag)
+		{
+			duration = new Date().getTime() - ping;
+			distance = duration * 18 / 10000;
+			return Math.round(distance);
+		}
 	};
 
 	//____________________________________
@@ -839,7 +850,7 @@
 			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
 			['-'],
 			[' ', 'CONNECT Ultrasonic_distance sensor', 'set_ultrasonic'],
-			['r', 'Ultrasonic distance','ultrasonic_distance']
+			['r', 'Ultrasonic Distance','ultrasonic_distance']
 		]
 	};
 
