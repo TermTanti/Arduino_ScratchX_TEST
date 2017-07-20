@@ -750,16 +750,19 @@
 		ext.digitalLED(_trig,on);
 		sleep(10);
 		ext.digitalLED(_trig,off);
-		console.log('YO ' + digitalRead(echo_pin));
 
-		if (digitalRead(echo_pin) && flag)
+		var hw = hwList.search('echo');
+		if (!hw) return;
+		console.log('YO');
+
+		if (digitalRead(hw.pin) && flag)
 		{
 			ping = new Date().getTime();
 			console.log('PING!!');
 			flag = false;
 		}
 
-		if (!digitalRead(echo_pin) && !flag)
+		if (!digitalRead(hw.pin) && !flag)
 		{
 			duration = new Date().getTime() - ping;
 			distance = duration * 18 / 1000;
@@ -844,9 +847,9 @@
 			['b', 'PIN %n on?', 'digitalRead', 1],
 			['-'],
 			['h', 'WHEN analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
-			['r', 'Read analog %n', 'analogRead', 0],
+			['r', 'READ analog %n', 'analogRead', 0],
 			['-'],
-			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
+			['r', 'MAP %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
 			['-'],
 			['-'],
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
