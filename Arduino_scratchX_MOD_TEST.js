@@ -698,10 +698,16 @@
 			G_pin = 9,
 			B_pin = 10,
 
-			ext.connectHW(R_btn,R_pin);
+		ext.connectHW(R_btn,R_pin);
 		ext.connectHW(G_btn,G_pin);
 		ext.connectHW(B_btn,B_pin);
 	};
+	ext.changeRGB = function( R_val, G_val, B_val){
+			ext.setLED(R_pin, R_val);
+			ext.setLED(G_pin, G_val);
+			ext.setLED(B_pin, B_val);
+		};
+	
 	//____________________________________
 	var poller = null;
 	var watchdog = null;
@@ -790,7 +796,8 @@
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
-			[' ', 'Set led RGB','setRGB']
+			[' ', 'Set led RGB','setRGB'],
+			[' ', 'SET RGB to R:%n G%n B%n', 'changeRGB',0 ,0 ,0]
 		]
 	};
 
