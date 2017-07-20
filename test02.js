@@ -721,9 +721,9 @@
 
 	ext.changeRGB = function( R_val, G_val, B_val)
 	{
-		ext.setLED(R_pin, R_val);
-		ext.setLED(G_pin, G_val);
-		ext.setLED(B_pin, B_val);
+		ext.setLED(R_btn, R_val);
+		ext.setLED(G_btn, G_val);
+		ext.setLED(B_btn, B_val);
 	};
 
 	//____________________________________
