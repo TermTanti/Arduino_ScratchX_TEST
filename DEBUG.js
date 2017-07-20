@@ -99,7 +99,7 @@
 
 			else
 			{
-				console.log('device');
+				//console.log('device');
 				device.pin = pin;
 				device.val = 0;
 			}
