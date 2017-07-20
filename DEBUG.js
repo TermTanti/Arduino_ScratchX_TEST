@@ -834,7 +834,7 @@
 			['r', 'READ %m.hwIn', 'readInput', 'In0'],
 			['-'],
 			[' ', 'SET pin %n %m.outputs', 'digitalWrite', 1, 'on'],
-			[' ', 'Set pin %n to %n%', 'analogWrite', 3, 100],
+			[' ', 'SET pin %n to %n%', 'analogWrite', 3, 100],
 			['-'],
 			['h', 'When pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
 			['b', 'Pin %n on?', 'digitalRead', 1],
