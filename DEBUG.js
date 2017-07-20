@@ -746,7 +746,7 @@
 		ext.digitalLED(_trig,on);
 		sleep(10);
 		ext.digitalLED(_trig,off);
-		console.log(digitalRead(echo_pin));
+		console.log('YO ' + digitalRead(echo_pin));
 
 		if (digitalRead(echo_pin) && flag)
 		{
@@ -836,8 +836,8 @@
 			[' ', 'SET pin %n %m.outputs', 'digitalWrite', 1, 'on'],
 			[' ', 'SET pin %n to %n%', 'analogWrite', 3, 100],
 			['-'],
-			['h', 'When pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
-			['b', 'Pin %n on?', 'digitalRead', 1],
+			['h', 'WHEN pin %n is %m.outputs', 'whenDigitalRead', 1, 'on'],
+			['b', 'PIN %n on?', 'digitalRead', 1],
 			['-'],
 			['h', 'When analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
 			['r', 'Read analog %n', 'analogRead', 0],
