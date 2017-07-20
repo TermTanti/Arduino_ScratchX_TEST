@@ -756,8 +756,8 @@
 		if (!digitalRead(echo_pin) && !flag)
 		{
 			duration = new Date().getTime() - ping;
-			distance = duration * 18 / 10000;
-			return Math.round(distance);
+			distance = duration * 18 / 1000;
+			return distance;
 		}
 	};
 
@@ -825,7 +825,7 @@
 			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
-			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
+			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
 			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
 			['r', 'READ %m.hwIn', 'readInput', 'In0'],
