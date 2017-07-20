@@ -92,12 +92,14 @@
 			var device = this.search(dev);
 			if (!device)
 			{
+				console.log('!device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
 
 			else
 			{
+				console.log('device');
 				device.pin = pin;
 				device.val = 0;
 			}
