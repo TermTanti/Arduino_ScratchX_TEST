@@ -750,6 +750,7 @@
 		if (digitalRead(echo_pin) && flag)
 		{
 			ping = new Date().getTime();
+			console.log('PING!!');
 			flag = false;
 		}
 
@@ -757,6 +758,7 @@
 		{
 			duration = new Date().getTime() - ping;
 			distance = duration * 18 / 1000;
+			console.log('RETURN');
 			return distance;
 		}
 	};
