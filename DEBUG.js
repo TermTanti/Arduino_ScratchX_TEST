@@ -716,7 +716,7 @@
 
 	function sleep(milliseconds)
 	{
-		console.log('SLEEP');
+		//console.log('SLEEP');
 		var start = new Date().getTime();
 		for (var i = 0; i < 1e7; i++)
 		{
@@ -754,15 +754,16 @@
 		if (!hw) return;
 		console.log('YO : ' + String(digitalRead(hw.pin)));
 
-		//if (digitalRead(hw.pin))
-		//{
-			//var ping = new Date().getTime();
-			//console.log('GARBANZO!!');
-			//while (digitalRead(hw.pin))
-			//{
-				//flag = true;
-			//}
-		//}
+		if (digitalRead(hw.pin) == 0)
+		{
+			var ping = new Date().getTime();
+			console.log('GARBANZO!!');
+			while (digitalRead(hw.pin) == 0)
+			{
+				flag = true;
+				console.log('TRUE');
+			}
+		}
 		//
 		//endofpulse = true;
 //
@@ -833,7 +834,7 @@
 		en:
 		[
 			['h', 'WHEN DEVICE IS CONNECTED', 'whenConnected'],
-			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
+			[' ', 'CONNECT %m.hwOut TO pin %n', 'connectHW', 'led A', 2],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
