@@ -840,7 +840,7 @@
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds BRIGHTNESS TO %n%', 'setLED', 'led A', 100],
-			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
+			[' ', 'CHANGE %m.leds BRIGHTNESS by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
