@@ -835,7 +835,7 @@
 		[
 			['h', 'WHEN DEVICE IS CONNECTED', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut TO pin %n', 'connectHW', 'led A', 2],
-			[' ', 'CONNECT %m.hwIn TO analog %n', 'connectHW', 'In0', 0],
+			[' ', 'CONNECT %m.hwIn TO ANALOG %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
