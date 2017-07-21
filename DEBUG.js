@@ -740,11 +740,9 @@
 
 	ext.ultrasonic_distance = function()
 	{
-		console.log('Ultrasonic distance');
-		var duration = null;
-		var distance = null;
-		var ping = null;
-		var flag = true;
+		//console.log('Ultrasonic distance');
+		var flag = false;
+		var endofpulse = false;
 
 		ext.digitalLED(_trig,off);
 		sleep(2);
@@ -754,19 +752,24 @@
 
 		var hw = hwList.search(_echo);
 		if (!hw) return;
-		console.log('YO');
+		//console.log('YO');
 
 		if (digitalRead(hw.pin))
 		{
-			ping = new Date().getTime();
+			var ping = new Date().getTime();
 			console.log('GARBANZO!!');
-			while (digitalRead(hw.pin)) {flag = false;}
+			while (digitalRead(hw.pin))
+			{
+				flag = true;
+			}
 		}
+		
+		endofpulse = true;
 
-		if (!digitalRead(hw.pin) && !flag)
+		if (endofpulse && flag)
 		{
-			duration = new Date().getTime() - ping;
-			distance = duration * 18 / 1000;
+			var duration = new Date().getTime() - ping;
+			var distance = duration * 18 / 1000;
 			console.log('RETURN');
 			return distance;
 		}
@@ -863,7 +866,7 @@
 			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
 			['-'],
 			[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
-			['r', 'Ultrasonic Distance','ultrasonic_distance']
+			['r', 'ULTRASONIC Distance','ultrasonic_distance']
 		]
 	};
 
