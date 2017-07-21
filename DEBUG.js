@@ -762,6 +762,7 @@
 			{
 				flag = true;
 				console.log('TRUE');
+				digitalRead(hw.pin);
 			}
 		}
 
@@ -838,7 +839,7 @@
 			[' ', 'CONNECT %m.hwIn TO ANALOG %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-			[' ', 'SET %m.leds BRIGHTNESS to %n%', 'setLED', 'led A', 100],
+			[' ', 'SET %m.leds BRIGHTNESS TO %n%', 'setLED', 'led A', 100],
 			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
