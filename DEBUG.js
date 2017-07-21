@@ -92,7 +92,7 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('!device');
+				//console.log('!device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
@@ -713,47 +713,47 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
-//
-	//function sleep(milliseconds)
-	//{
-		//console.log('SLEEP');
-		//var start = new Date().getTime();
-		//for (var i = 0; i < 1e7; i++)
-		//{
-			//if ((new Date().getTime() - start) > milliseconds)
-			//{
-				//break;
-			//}
-		//}
-	//}
-//
-	//var _trig = 'trig',
-		//_echo = 'echo';
-//
-	//ext.set_ultrasonic = function()
-	//{
-		//var trig_pin = 2,
-			//echo_pin = 12;
-		//ext.connectHW(_trig,trig_pin);
-		//ext.connectHW(_echo,echo_pin);
-	//};
-//
-	//ext.ultrasonic_distance = function()
-	//{
-		////console.log('Ultrasonic distance');
-		//var flag = false;
-		//var endofpulse = false;
-//
-		//ext.digitalLED(_trig,off);
-		//sleep(2);
-		//ext.digitalLED(_trig,on);
-		//sleep(10);
-		//ext.digitalLED(_trig,off);
-//
-		//var hw = hwList.search(_echo);
-		//if (!hw) return;
-		////console.log('YO');
-//
+
+	function sleep(milliseconds)
+	{
+		console.log('SLEEP');
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++)
+		{
+			if ((new Date().getTime() - start) > milliseconds)
+			{
+				break;
+			}
+		}
+	}
+
+	var _trig = 'trig',
+		_echo = 'echo';
+
+	ext.set_ultrasonic = function()
+	{
+		var trig_pin = 2,
+			echo_pin = 12;
+		ext.connectHW(_trig,trig_pin);
+		ext.connectHW(_echo,echo_pin);
+	};
+
+	ext.ultrasonic_distance = function()
+	{
+		//console.log('Ultrasonic distance');
+		var flag = false;
+		var endofpulse = false;
+
+		ext.digitalLED(_trig,off);
+		sleep(2);
+		ext.digitalLED(_trig,on);
+		sleep(10);
+		ext.digitalLED(_trig,off);
+
+		var hw = hwList.search(_echo);
+		if (!hw) return;
+		console.log('YO : ' + digitalRead(hw.pin));
+
 		//if (digitalRead(hw.pin))
 		//{
 			//var ping = new Date().getTime();
@@ -773,9 +773,9 @@
 			//console.log('RETURN');
 			//return distance;
 		//}
-		//
-		//return;
-	//};
+		
+		return;
+	};
 
 	//____________________________________
 	var poller = null;
@@ -832,7 +832,7 @@
 	{
 		en:
 		[
-			['h', 'WHEN device is connected', 'whenConnected'],
+			['h', 'WHEN DEVICE is connected', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
