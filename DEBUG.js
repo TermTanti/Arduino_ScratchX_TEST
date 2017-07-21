@@ -713,60 +713,69 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
-
-	function sleep(milliseconds)
-	{
-		console.log('SLEEP');
-		var start = new Date().getTime();
-		for (var i = 0; i < 1e7; i++)
-		{
-			if ((new Date().getTime() - start) > milliseconds)
-			{
-				break;
-			}
-		}
-	}
-
-	var _trig = 'trig',
-		_echo = 'echo';
-
-	ext.set_ultrasonic = function()
-	{
-		var trig_pin = 2,
-			echo_pin = 12;
-		ext.connectHW(_trig,trig_pin);
-		ext.connectHW(_echo,echo_pin);
-	};
-
-	ext.ultrasonic_distance = function()
-	{
-		console.log('Ultrasonic distance');
-		var duration = 0;
-		var distance = 0;
-		var ping = 0;
-		var flag = true;
-		ext.digitalLED(_trig,off);
-		sleep(2);
-		ext.digitalLED(_trig,on);
-		sleep(10);
-		ext.digitalLED(_trig,off);
-		console.log('YO ' + digitalRead(echo_pin));
-
-		if (digitalRead(echo_pin) && flag)
-		{
-			ping = new Date().getTime();
-			console.log('PING!!');
-			flag = false;
-		}
-
-		if (!digitalRead(echo_pin) && !flag)
-		{
-			duration = new Date().getTime() - ping;
-			distance = duration * 18 / 1000;
-			console.log('RETURN');
-			return distance;
-		}
-	};
+//
+	//function sleep(milliseconds)
+	//{
+		//console.log('SLEEP');
+		//var start = new Date().getTime();
+		//for (var i = 0; i < 1e7; i++)
+		//{
+			//if ((new Date().getTime() - start) > milliseconds)
+			//{
+				//break;
+			//}
+		//}
+	//}
+//
+	//var _trig = 'trig',
+		//_echo = 'echo';
+//
+	//ext.set_ultrasonic = function()
+	//{
+		//var trig_pin = 2,
+			//echo_pin = 12;
+		//ext.connectHW(_trig,trig_pin);
+		//ext.connectHW(_echo,echo_pin);
+	//};
+//
+	//ext.ultrasonic_distance = function()
+	//{
+		////console.log('Ultrasonic distance');
+		//var flag = false;
+		//var endofpulse = false;
+//
+		//ext.digitalLED(_trig,off);
+		//sleep(2);
+		//ext.digitalLED(_trig,on);
+		//sleep(10);
+		//ext.digitalLED(_trig,off);
+//
+		//var hw = hwList.search(_echo);
+		//if (!hw) return;
+		////console.log('YO');
+//
+		//if (digitalRead(hw.pin))
+		//{
+			//var ping = new Date().getTime();
+			//console.log('GARBANZO!!');
+			//while (digitalRead(hw.pin))
+			//{
+				//flag = true;
+			//}
+		//}
+		//
+		//endofpulse = true;
+//
+		//if (endofpulse && flag)
+		//{
+			//var duration = new Date().getTime() - ping;
+			//var distance = duration * 18 / 1000;
+			//console.log('RETURN');
+			//return distance;
+		//}
+		//
+		//return;
+	//};
 
 	//____________________________________
 	var poller = null;
@@ -844,20 +853,20 @@
 			['b', 'PIN %n on?', 'digitalRead', 1],
 			['-'],
 			['h', 'WHEN analog %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
-			['r', 'Read analog %n', 'analogRead', 0],
+			['r', 'READ analog %n', 'analogRead', 0],
 			['-'],
-			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
+			['r', 'MAP %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
 			['-'],
 			['-'],
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
-			[' ', 'Set led RGB','setRGB'],
-			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
-			['-'],
-			[' ', 'CONNECT Ultrasonic_distance sensor', 'set_ultrasonic'],
-			['r', 'Ultrasonic Distance','ultrasonic_distance']
+			[' ', 'SET LED RGB','setRGB'],
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
+			//['-'],
+			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
+			//['r', 'ULTRASONIC Distance','ultrasonic_distance']
 		]
 	};
 
