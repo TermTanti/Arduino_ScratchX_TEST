@@ -813,7 +813,7 @@
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'Set led RGB','setRGB'],
 			[' ', 'SET RGB to R:%n G%n B%n', 'changeRGB',0,0,0],
-			['r', 'Ultrasonic', 'Ultra01']
+			//['r', 'Ultrasonic', 'Ultra01']
 		]
 	};
 
