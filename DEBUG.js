@@ -741,8 +741,9 @@
 	ext.ultrasonic_distance = function()
 	{
 		//console.log('Ultrasonic distance');
-		//var flag = false;
-		//var endofpulse = false;
+		var flag = false;
+		var endofpulse = false;
+		var pulsetrig = String(digitalRead(hw.pin));
 
 		ext.digitalLED(_trig,off);
 		sleep(2);
@@ -752,17 +753,19 @@
 
 		var hw = hwList.search(_echo);
 		if (!hw) return;
-		console.log('YO : ' + String(digitalRead(hw.pin)) + _echo);
+		pulsetrig = String(digitalRead(hw.pin));
+		console.log('YO : ' + pulsetrig + _echo);
 
-		if (digitalRead(hw.pin) == 1)
+		if (pulsetrig == '1')
 		{
 			var ping = new Date().getTime();
 			console.log('GARBANZO!!');
-			while (digitalRead(hw.pin) == 1)
+			
+			while (pulsetrig == '1')
 			{
 				flag = true;
 				console.log('TRUE');
-				digitalRead(hw.pin);
+				pulsetrig = String(digitalRead(hw.pin));
 			}
 		}
 
@@ -775,7 +778,6 @@
 			console.log('RETURN');
 			return distance;
 		}
-		
 		return;
 	};
 
@@ -840,7 +842,7 @@
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds BRIGHTNESS TO %n%', 'setLED', 'led A', 100],
-			[' ', 'CHANGE %m.leds BRIGHTNESS by %n%', 'changeLED', 'led A', 20],
+			[' ', 'CHANGE %m.leds BRIGHTNESS BY %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
