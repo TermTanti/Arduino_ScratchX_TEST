@@ -741,8 +741,8 @@
 	ext.ultrasonic_distance = function()
 	{
 		//console.log('Ultrasonic distance');
-		var flag = false;
-		var endofpulse = false;
+		//var flag = false;
+		//var endofpulse = false;
 
 		ext.digitalLED(_trig,off);
 		sleep(2);
@@ -832,7 +832,7 @@
 	{
 		en:
 		[
-			['h', 'WHEN DEVICE is connected', 'whenConnected'],
+			['h', 'WHEN DEVICE IS connected', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
@@ -863,10 +863,10 @@
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'SET LED RGB','setRGB'],
-			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
-			//['-'],
-			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
-			//['r', 'ULTRASONIC Distance','ultrasonic_distance']
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			['-'],
+			[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
+			['r', 'ULTRASONIC Distance','ultrasonic_distance']
 		]
 	};
 
