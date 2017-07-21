@@ -752,18 +752,18 @@
 
 		var hw = hwList.search(_echo);
 		if (!hw) return;
-		console.log('YO : ' + String(digitalRead(hw.pin)));
+		console.log('YO : ' + String(digitalRead(hw.pin)) + _echo);
 
-		if (digitalRead(hw.pin) == 0)
-		{
-			var ping = new Date().getTime();
-			console.log('GARBANZO!!');
-			while (digitalRead(hw.pin) == 0)
-			{
-				flag = true;
-				console.log('TRUE');
-			}
-		}
+		//if (digitalRead(hw.pin) == 0)
+		//{
+			//var ping = new Date().getTime();
+			//console.log('GARBANZO!!');
+			//while (digitalRead(hw.pin) == 0)
+			//{
+				//flag = true;
+				//console.log('TRUE');
+			//}
+		//}
 		//
 		//endofpulse = true;
 //
@@ -835,7 +835,7 @@
 		[
 			['h', 'WHEN DEVICE IS CONNECTED', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut TO pin %n', 'connectHW', 'led A', 2],
-			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
+			[' ', 'CONNECT %m.hwIn TO analog %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
 			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
