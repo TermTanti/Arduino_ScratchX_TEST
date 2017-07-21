@@ -405,7 +405,7 @@
 	}
 	function sentUltrasonic()
 	{
-		var Trig_pin = 2,
+		var Trig_pin = 2;
 			
 		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, 0xF7]);
 		device.send(Ultradata.buffer);
