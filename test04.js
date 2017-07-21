@@ -403,7 +403,14 @@
 									 deg >> 0x07]);
 		device.send(msg.buffer);
 	}
-
+	function sentUltrasonic()
+	{
+		var Trig_pin = 2,
+			Ecco_pin = 12;
+		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, Ecco_pin, 0xF7]);
+		device.send(Ultradata.buffer);
+		return digitalRead(Ecco_pin);
+	}
 	ext.whenConnected = function()
 	{
 		if (notifyConnection)
@@ -713,6 +720,10 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
+	ext.Ultra01 = function()
+	{
+		sentUltrasonic();
+	};
 //
 	//function sleep(milliseconds)
 	//{
@@ -863,7 +874,8 @@
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'SET LED RGB','setRGB'],
-			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			['r', 'Ultrasonic', 'Ultra01']
 			//['-'],
 			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
 			//['r', 'ULTRASONIC Distance','ultrasonic_distance']
