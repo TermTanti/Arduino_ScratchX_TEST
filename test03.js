@@ -698,16 +698,27 @@
 			G_pin = 9,
 			B_pin = 10,
 
-		ext.connectHW(R_btn,R_pin);
+			ext.connectHW(R_btn,R_pin);
 		ext.connectHW(G_btn,G_pin);
 		ext.connectHW(B_btn,B_pin);
 	};
-	ext.changeRGB = function( R_val, G_val, B_val){
-			ext.setLED(R_pin, R_val);
-			ext.setLED(G_pin, G_val);
-			ext.setLED(B_pin, B_val);
-		};
-	
+	ext.changeRGB = function( R_val, G_val, B_val)
+	{
+		ext.setLED(R_pin, R_val);
+		ext.setLED(G_pin, G_val);
+		ext.setLED(B_pin, B_val);
+	};
+
+	var Trig = 'Trig',
+		Ecco = 'Ecco';
+	ext.Ultra01 = function()
+	{
+		var Trig_pin = 2,
+			Ecco_pin = 12;
+		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, Ecco_pin, 0xF7]);
+		device.send(Ultradata.buffer);
+	};
+
 	//____________________________________
 	var poller = null;
 	var watchdog = null;
@@ -797,7 +808,8 @@
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'Set led RGB','setRGB'],
-			[' ', 'SET RGB to R:%n G%n B%n', 'changeRGB',0 ,0 ,0]
+			[' ', 'SET RGB to R:%n G%n B%n', 'changeRGB',0,0,0],
+			['r', 'Ultrasonic', 'Ultra01']
 		]
 	};
 
