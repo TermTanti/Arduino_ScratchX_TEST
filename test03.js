@@ -184,7 +184,13 @@
 									 START_SYSEX, ANALOG_MAPPING_QUERY, END_SYSEX]);
 		device.send(msg.buffer);
 	}
-
+	function sentUltrasonic()
+	{
+		var Trig_pin = 2,
+			Ecco_pin = 12;
+		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, Ecco_pin, 0xF7]);
+		device.send(Ultradata.buffer);
+	}
 	function setDigitalInputs(portNum, portData)
 	{
 		digitalInputData[portNum] = portData;
@@ -379,7 +385,7 @@
 			digitalOutputData[portNum] &= ~(1 << (pin & 0x07));
 		else
 			digitalOutputData[portNum] |= (1 << (pin & 0x07));
-		pinMode(pin, OUTPUT);
+			pinMode(pin, OUTPUT);
 		var msg = new Uint8Array([
 									 DIGITAL_MESSAGE | portNum,
 									 digitalOutputData[portNum] & 0x7F,
@@ -713,10 +719,7 @@
 		Ecco = 'Ecco';
 	ext.Ultra01 = function()
 	{
-		var Trig_pin = 2,
-			Ecco_pin = 12;
-		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, Ecco_pin, 0xF7]);
-		device.send(Ultradata.buffer);
+		sentUltrasonic();
 	};
 
 	//____________________________________
