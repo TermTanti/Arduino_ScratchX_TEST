@@ -406,10 +406,10 @@
 	function sentUltrasonic()
 	{
 		var Trig_pin = 2,
-			Ecco_pin = 12;
-		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, Ecco_pin, 0xF7]);
+			
+		var Ultradata = new Uint8Array([0xF0, 0x08, Trig_pin, 0xF7]);
 		device.send(Ultradata.buffer);
-		return digitalRead(Ecco_pin);
+		return digitalRead(Trig_pin);
 	}
 	ext.whenConnected = function()
 	{
