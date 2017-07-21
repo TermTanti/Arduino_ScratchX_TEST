@@ -752,7 +752,7 @@
 
 		var hw = hwList.search(_echo);
 		if (!hw) return;
-		console.log('YO : ' + digitalRead(hw.pin));
+		console.log('YO : ' + String(digitalRead(hw.pin)));
 
 		//if (digitalRead(hw.pin))
 		//{
@@ -832,7 +832,7 @@
 	{
 		en:
 		[
-			['h', 'WHEN DEVICE IS connected', 'whenConnected'],
+			['h', 'WHEN DEVICE IS CONNECTED', 'whenConnected'],
 			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
 			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
 			['-'],
