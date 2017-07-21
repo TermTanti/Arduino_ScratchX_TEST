@@ -92,7 +92,7 @@
 			var device = this.search(dev);
 			if (!device)
 			{
-				console.log('!device');
+				//console.log('!device');
 				device = {name: dev, pin: pin, val: 0};
 				this.devices.push(device);
 			}
@@ -713,69 +713,71 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
-//
-	//function sleep(milliseconds)
-	//{
+
+	function sleep(milliseconds)
+	{
 		//console.log('SLEEP');
-		//var start = new Date().getTime();
-		//for (var i = 0; i < 1e7; i++)
-		//{
-			//if ((new Date().getTime() - start) > milliseconds)
-			//{
-				//break;
-			//}
-		//}
-	//}
-//
-	//var _trig = 'trig',
-		//_echo = 'echo';
-//
-	//ext.set_ultrasonic = function()
-	//{
-		//var trig_pin = 2,
-			//echo_pin = 12;
-		//ext.connectHW(_trig,trig_pin);
-		//ext.connectHW(_echo,echo_pin);
-	//};
-//
-	//ext.ultrasonic_distance = function()
-	//{
-		////console.log('Ultrasonic distance');
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++)
+		{
+			if ((new Date().getTime() - start) > milliseconds)
+			{
+				break;
+			}
+		}
+	}
+
+	var _trig = 'trig',
+		_echo = 'echo';
+
+	ext.set_ultrasonic = function()
+	{
+		var trig_pin = 2,
+			echo_pin = 12;
+		ext.connectHW(_trig,trig_pin);
+		ext.connectHW(_echo,echo_pin);
+	};
+
+	ext.ultrasonic_distance = function()
+	{
+		//console.log('Ultrasonic distance');
 		//var flag = false;
 		//var endofpulse = false;
-//
-		//ext.digitalLED(_trig,off);
-		//sleep(2);
-		//ext.digitalLED(_trig,on);
-		//sleep(10);
-		//ext.digitalLED(_trig,off);
-//
-		//var hw = hwList.search(_echo);
-		//if (!hw) return;
-		////console.log('YO');
-//
-		//if (digitalRead(hw.pin))
-		//{
-			//var ping = new Date().getTime();
-			//console.log('GARBANZO!!');
-			//while (digitalRead(hw.pin))
-			//{
-				//flag = true;
-			//}
-		//}
-		//
-		//endofpulse = true;
-//
-		//if (endofpulse && flag)
-		//{
-			//var duration = new Date().getTime() - ping;
-			//var distance = duration * 18 / 1000;
-			//console.log('RETURN');
-			//return distance;
-		//}
-		//
-		//return;
-	//};
+
+		ext.digitalLED(_trig,off);
+		sleep(2);
+		ext.digitalLED(_trig,on);
+		sleep(10);
+		ext.digitalLED(_trig,off);
+
+		var hw = hwList.search(_echo);
+		if (!hw) return;
+		console.log('YO : ' + String(digitalRead(hw.pin)) + _echo);
+
+		if (digitalRead(hw.pin) == 1)
+		{
+			var ping = new Date().getTime();
+			console.log('GARBANZO!!');
+			while (digitalRead(hw.pin) == 1)
+			{
+				flag = true;
+				console.log('TRUE');
+				digitalRead(hw.pin);
+			}
+		}
+
+		endofpulse = true;
+
+		if (endofpulse && flag)
+		{
+			var duration = new Date().getTime() - ping;
+			var distance = duration * 18 / 1000;
+			console.log('RETURN');
+			return distance;
+		}
+		
+		return;
+	};
 
 	//____________________________________
 	var poller = null;
@@ -832,12 +834,12 @@
 	{
 		en:
 		[
-			['h', 'WHEN device is connected', 'whenConnected'],
-			[' ', 'CONNECT %m.hwOut to pin %n', 'connectHW', 'led A', 2],
-			[' ', 'CONNECT %m.hwIn to analog %n', 'connectHW', 'In0', 0],
+			['h', 'WHEN DEVICE IS CONNECTED', 'whenConnected'],
+			[' ', 'CONNECT %m.hwOut TO pin %n', 'connectHW', 'led A', 2],
+			[' ', 'CONNECT %m.hwIn TO ANALOG %n', 'connectHW', 'In0', 0],
 			['-'],
 			[' ', 'SET %m.leds %m.outputs', 'digitalLED', 'led A', 'on'],
-			[' ', 'SET %m.leds brightness to %n%', 'setLED', 'led A', 100],
+			[' ', 'SET %m.leds BRIGHTNESS TO %n%', 'setLED', 'led A', 100],
 			[' ', 'CHANGE %m.leds brightness by %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
@@ -863,10 +865,10 @@
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'SET LED RGB','setRGB'],
-			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
-			//['-'],
-			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
-			//['r', 'ULTRASONIC Distance','ultrasonic_distance']
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			['-'],
+			[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
+			['r', 'ULTRASONIC Distance','ultrasonic_distance']
 		]
 	};
 
