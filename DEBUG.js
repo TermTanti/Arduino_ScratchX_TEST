@@ -859,10 +859,10 @@
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
-			[' ', 'Set led RGB','setRGB'],
-			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			[' ', 'SET LED RGB','setRGB'],
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
 			['-'],
-			[' ', 'CONNECT Ultrasonic_distance sensor', 'set_ultrasonic'],
+			[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
 			['r', 'Ultrasonic Distance','ultrasonic_distance']
 		]
 	};
