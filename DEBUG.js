@@ -741,25 +741,26 @@
 	ext.ultrasonic_distance = function()
 	{
 		console.log('Ultrasonic distance');
-		var duration = 0;
-		var distance = 0;
-		var ping = 0;
+		var duration = null;
+		var distance = null;
+		var ping = null;
 		var flag = true;
+
 		ext.digitalLED(_trig,off);
 		sleep(2);
 		ext.digitalLED(_trig,on);
 		sleep(10);
 		ext.digitalLED(_trig,off);
 
-		var hw = hwList.search('echo');
+		var hw = hwList.search(_echo);
 		if (!hw) return;
 		console.log('YO');
 
-		if (digitalRead(hw.pin) && flag)
+		if (digitalRead(hw.pin))
 		{
 			ping = new Date().getTime();
-			console.log('PING!!');
-			flag = false;
+			console.log('GARBANZO!!');
+			while (digitalRead(hw.pin)) {flag = false;}
 		}
 
 		if (!digitalRead(hw.pin) && !flag)
@@ -769,6 +770,8 @@
 			console.log('RETURN');
 			return distance;
 		}
+		
+		return;
 	};
 
 	//____________________________________
