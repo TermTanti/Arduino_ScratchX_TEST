@@ -875,6 +875,7 @@
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'SET LED RGB','setRGB'],
 			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
+			['-'],
 			['r', 'Ultrasonic', 'Ultra01']
 			//['-'],
 			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
