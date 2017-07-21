@@ -740,7 +740,7 @@
 
 	ext.ultrasonic_distance = function()
 	{
-		//console.log('Ultrasonic distance');
+		console.log('Ultrasonic distance');
 		var flag = false;
 		var endofpulse = false;
 		var pulsetrig = String(digitalRead(hw.pin));
@@ -844,7 +844,7 @@
 			[' ', 'SET %m.leds BRIGHTNESS TO %n%', 'setLED', 'led A', 100],
 			[' ', 'CHANGE %m.leds BRIGHTNESS BY %n%', 'changeLED', 'led A', 20],
 			['-'],
-			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
+			[' ', 'ROTATE %m.servos TO %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
 			['h', 'WHEN %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
