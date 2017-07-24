@@ -713,73 +713,74 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
-
-	function sleep(milliseconds)
-	{
-		//console.log('SLEEP');
-		var start = new Date().getTime();
-		for (var i = 0; i < 1e7; i++)
-		{
-			if ((new Date().getTime() - start) > milliseconds)
-			{
-				break;
-			}
-		}
-	}
-
-	var _trig = 'trig',
-		_echo = 'echo';
-
-	ext.set_ultrasonic = function()
-	{
-		var trig_pin = 2,
-			echo_pin = 12;
-		ext.connectHW(_trig,trig_pin);
-		ext.connectHW(_echo,echo_pin);
-	};
-
-	ext.ultrasonic_distance = function()
-	{
-		console.log('Ultrasonic distance');
-		var flag = false;
-		var endofpulse = false;
-		var pulsetrig = String(digitalRead(hw.pin));
-
-		ext.digitalLED(_trig,off);
-		sleep(2);
-		ext.digitalLED(_trig,on);
-		sleep(10);
-		ext.digitalLED(_trig,off);
-
-		var hw = hwList.search(_echo);
-		if (!hw) return;
-		pulsetrig = String(digitalRead(hw.pin));
-		console.log('YO : ' + pulsetrig + _echo);
-
-		if (pulsetrig == '1')
-		{
-			var ping = new Date().getTime();
-			console.log('GARBANZO!!');
-			
-			while (pulsetrig == '1')
-			{
-				flag = true;
-				console.log('TRUE');
-				pulsetrig = String(digitalRead(hw.pin));
-			}
-		}
-
-		endofpulse = true;
-
-		if (endofpulse && flag)
-		{
-			var duration = new Date().getTime() - ping;
-			var distance = duration * 18 / 1000;
-			console.log('RETURN');
-			return distance;
-		}
-		return;
-	};
+//
+	//function sleep(milliseconds)
+	//{
+		////console.log('SLEEP');
+		//var start = new Date().getTime();
+		//for (var i = 0; i < 1e7; i++)
+		//{
+			//if ((new Date().getTime() - start) > milliseconds)
+			//{
+				//break;
+			//}
+		//}
+	//}
+//
+	//var _trig = 'trig',
+		//_echo = 'echo';
+//
+	//ext.set_ultrasonic = function()
+	//{
+		//var trig_pin = 2,
+			//echo_pin = 12;
+		//ext.connectHW(_trig,trig_pin);
+		//ext.connectHW(_echo,echo_pin);
+	//};
+//
+	//ext.ultrasonic_distance = function()
+	//{
+		//console.log('Ultrasonic distance');
+		//var flag = false;
+		//var endofpulse = false;
+		//var pulsetrig = String(digitalRead(hw.pin));
+//
+		//ext.digitalLED(_trig,off);
+		//sleep(2);
+		//ext.digitalLED(_trig,on);
+		//sleep(10);
+		//ext.digitalLED(_trig,off);
+//
+		//console.log('YO : ' + String(digitalRead(hw.pin)) + _echo + ' ');
+		//var hw = hwList.search(_echo);
+		//if (!hw) return;
+		//pulsetrig = String(digitalRead(hw.pin));
+		//console.log('YO : ' + pulsetrig + _echo);
+//
+		//if (pulsetrig == '1')
+		//{
+			//var ping = new Date().getTime();
+			//console.log('GARBANZO!!');
+//
+			//while (pulsetrig == '1')
+			//{
+				//flag = true;
+				//console.log('TRUE');
+				//pulsetrig = String(digitalRead(hw.pin));
+			//}
+		//}
+//
+		//endofpulse = true;
+//
+		//if (endofpulse && flag)
+		//{
+			//var duration = new Date().getTime() - ping;
+			//var distance = duration * 18 / 1000;
+			//console.log('RETURN');
+			//return distance;
+		//}
+		//return;
+	//};
 
 	//____________________________________
 	var poller = null;
@@ -845,7 +846,7 @@
 			[' ', 'CHANGE %m.leds BRIGHTNESS BY %n%', 'changeLED', 'led A', 20],
 			['-'],
 			[' ', 'ROTATE %m.servos TO %n degrees', 'rotateServo', 'servo A', 180],
-			[' ', 'ROTATE %m.servos by %n degrees', 'changeServo', 'servo A', 20],
+			[' ', 'ROTATE %m.servos BY %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
 			['h', 'WHEN %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
 			['r', 'READ %m.hwIn', 'readInput', 'In0'],
@@ -867,10 +868,10 @@
 			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'SET LED RGB','setRGB'],
-			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
-			['-'],
-			[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
-			['r', 'ULTRASONIC Distance','ultrasonic_distance']
+			[' ', 'SET RGB TO R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
+			//['-'],
+			//[' ', 'CONNECT ULTRASONIC DISTANCE SENSOR', 'set_ultrasonic'],
+			//['r', 'ULTRASONIC Distance','ultrasonic_distance']
 		]
 	};
 

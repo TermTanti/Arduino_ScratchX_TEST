@@ -674,7 +674,7 @@
 
 		var M2A_pin = 11,
 			M2B_pin = 8,
-			M2C_pin = 13;
+			M2C_pin = 12;
 
 		if (motor == 'M1')
 		{
@@ -689,6 +689,7 @@
 			ext.connectHW(M2C,M2C_pin);
 		}
 	};
+	
 	var R_btn = 'R_btn',
 		G_btn = 'G_btn',
 		B_btn = 'B_btn';
@@ -777,9 +778,6 @@
 			[' ', 'ROTATE %m.servos to %n degrees', 'rotateServo', 'servo A', 180],
 			[' ', 'Rotate %m.servos by %n degrees', 'changeServo', 'servo A', 20],
 			['-'],
-			//['h', 'WHEN %m.buttons is %m.btnStates', 'whenButton', 'button A', 'pressed'],
-			//['b', '%m.buttons pressed?', 'isButtonPressed', 'button A'],
-			//['-'],
 			['h', 'When %m.hwIn %m.ops %n%', 'whenInput', 'In0', '>', 50],
 			['r', 'READ %m.hwIn', 'readInput', 'In0'],
 			['-'],
@@ -793,7 +791,6 @@
 			['r', 'Read analog %n', 'analogRead', 0],
 			['-'],
 			['r', 'Map %n from ( %n - %n ) to ( %n - %n )', 'mapValues', 50, 0, 100, -255, 255],
-			['-'],
 			['-'],
 			[' ', 'SET DC %m.motor %m.Mdirect speed %n%', 'DCmotor', 'M1', 'clockwise', 100],
 			[' ', 'MOVE %m.directionM speed %n%', 'MoveRobot', 'forward', 100],
@@ -810,7 +807,6 @@
 		{
 			Mdirect : ['clockwise', 'anticlockwise', 'stop'],
 			directionM : ['forward', 'backward', 'turn left', 'turn right'],
-			//buttons: ['button A', 'button B', 'button C', 'button D'],
 			btnStates: ['pressed', 'released'],
 			hwIn: ['In0', 'In1', 'In2', 'In3', 'In4'],
 			hwOut: ['led A', 'led B', 'led C', 'led D', 'button A', 'button B', 'button C', 'button D', 'servo A', 'servo B', 'servo C', 'servo D', 'M1A_pin', 'M1B_pin', 'M1C_pin'],
