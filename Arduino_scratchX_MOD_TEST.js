@@ -689,7 +689,7 @@
 			ext.connectHW(M2C,M2C_pin);
 		}
 	};
-	
+
 	var R_btn = 'R_btn',
 		G_btn = 'G_btn',
 		B_btn = 'B_btn';
@@ -711,7 +711,19 @@
 		ext.setLED(G_btn, G_val);
 		ext.setLED(B_btn, B_val);
 	};
-	
+
+	ext.StopAllMotor = function()
+	{
+		ext.MTclock(M1B, M1C, 'stop');
+		ext.setLED(M1A, 0);
+		ext.MTclock(M2B, M2C, 'stop');
+		ext.setLED(M2A, 0);
+	};
+
+	ext.CloseRGB = function()
+	{
+		ext.changeRGB(0, 0, 0);
+	};
 	//____________________________________
 	var poller = null;
 	var watchdog = null;
@@ -795,9 +807,12 @@
 			[' ', 'SET DC %m.motor %m.Mdirect SPEED %n%', 'DCmotor', 'M1', 'clockwise', 100],
 			[' ', 'MOVE %m.directionM SPEED %n%', 'MoveRobot', 'forward', 100],
 			['-'],
+			[' ', 'STOP ALL MOTOR', 'StopAllMotor' ],
+			[' ', 'CLOSE RGB', 'CloseRGB' ],
+			['-'],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'CONNECT LED R G B','setRGB'],
-			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0 ,0 ,0]
+			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0]
 		]
 	};
 
