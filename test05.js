@@ -401,7 +401,15 @@
 									 deg >> 0x07]);
 		device.send(msg.buffer);
 	}
-
+	
+	function checkUltrasonic()
+	{
+		var msg = new Uint8Array([
+									 ANALOG_MESSAGE | (pin & 0x0F),
+									 deg & 0x7F,
+									 deg >> 0x07]);
+		
+	}
 	ext.whenConnected = function()
 	{
 		if (notifyConnection)
