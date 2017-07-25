@@ -794,7 +794,7 @@
 			['h', 'WHEN ANALOG %n %m.ops %n%', 'whenAnalogRead', 1, '>', 50],
 			['-'],
 			[' ', 'CONNECT %m.hwOut TO PIN %n', 'connectHW', 'led A', 2],
-			[' ', 'CONNECT %m.hwIn TO analog %n', 'connectHW', 'In0', 0],
+			[' ', 'CONNECT %m.hwIn TO ANALOG %n', 'connectHW', 'In0', 0],
 			[' ', 'CONNECT %m.motor', 'connectMotor', 'M1'],
 			[' ', 'CONNECT LED R G B','setRGB'],
 			['-'],
@@ -818,7 +818,7 @@
 			[' ', 'SET RGB to R: %n% G: %n% B: %n%', 'changeRGB',0,0,0],
 			['-'],
 			[' ', 'STOP ALL MOTOR', 'StopAllMotor' ],
-			[' ', 'CLOSE RGB', 'CloseRGB' ]
+			[' ', 'turn OFF RGB', 'CloseRGB' ]
 		]
 	};
 
