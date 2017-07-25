@@ -688,6 +688,15 @@
 			ext.connectHW(M2B,M2B_pin);
 			ext.connectHW(M2C,M2C_pin);
 		}
+		else if (motor == 'M1 & M2')
+	    {
+			ext.connectHW(M1A,M1A_pin);
+			ext.connectHW(M1B,M1B_pin);
+			ext.connectHW(M1C,M1C_pin);
+		    ext.connectHW(M2A,M2A_pin);
+			ext.connectHW(M2B,M2B_pin);
+			ext.connectHW(M2C,M2C_pin);
+		}
 	};
 
 	var R_btn = 'R_btn',
@@ -829,7 +838,7 @@
 			outputs: ['on', 'off'],
 			ops: ['>', '=', '<'],
 			servos: ['servo A', 'servo B', 'servo C', 'servo D'],
-			motor: ['M1', 'M2']
+			motor: ['M1', 'M2', 'M1 & M2']
 		}
 	};
 
