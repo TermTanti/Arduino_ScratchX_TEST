@@ -751,11 +751,11 @@
 		//sleep(10);
 		//ext.digitalLED(_trig,off);
 //
-		//console.log('YO : ' + String(digitalRead(hw.pin)) + _echo + ' ');
+		//console.log('READ : ' + String(digitalRead(hw.pin)) + _echo + ' ');
 		//var hw = hwList.search(_echo);
 		//if (!hw) return;
 		//pulsetrig = String(digitalRead(hw.pin));
-		//console.log('YO : ' + pulsetrig + _echo);
+		//console.log('READ : ' + pulsetrig + _echo);
 //
 		//if (pulsetrig == '1')
 		//{
