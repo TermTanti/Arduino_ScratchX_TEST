@@ -613,14 +613,14 @@
 
 	ext.DCmotor = function(val1, val2, speed)
 	{
-		if (val1 == 'M1')
+		if (val1 == 'Mright')
 		{
 			ext.MTclock(M1B, M1C, val2);
 			ext.setLED(M1A, speed);
 
 		}
 
-		else if (val1 == 'M2')
+		else if (val1 == 'Mleft')
 		{
 			ext.MTclock(M2B, M2C, val2);
 			ext.setLED(M2A, speed);
@@ -675,19 +675,19 @@
 			M2B_pin = 8,
 			M2C_pin = 12;
 
-		if (motor == 'M1')
+		if (motor == 'Mright')
 		{
 			ext.connectHW(M1A,M1A_pin);
 			ext.connectHW(M1B,M1B_pin);
 			ext.connectHW(M1C,M1C_pin);
 		}
-		else if (motor == 'M2')
+		else if (motor == 'Mleft')
 		{
 			ext.connectHW(M2A,M2A_pin);
 			ext.connectHW(M2B,M2B_pin);
 			ext.connectHW(M2C,M2C_pin);
 		}
-		else if (motor == 'M1 & M2')
+		else if (motor == 'Both motor')
 	    {
 			ext.connectHW(M1A,M1A_pin);
 			ext.connectHW(M1B,M1B_pin);
@@ -834,7 +834,7 @@
 			outputs: ['on', 'off'],
 			ops: ['>', '=', '<'],
 			servos: ['servo A', 'servo B', 'servo C', 'servo D'],
-			motor: ['M1', 'M2', 'M1 & M2']
+			motor: ['Mright', 'Mleft', 'Both motor']
 		}
 	};
 
