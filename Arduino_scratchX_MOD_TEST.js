@@ -626,6 +626,15 @@
 			ext.setLED(M2A, speed);
 
 		}
+		
+		else if (val1 == 'Both motor')
+		{
+			ext.MTclock(M1B, M1C, val2);
+			ext.setLED(M1A, speed);
+			ext.MTclock(M2B, M2C, val2);
+			ext.setLED(M2A, speed);
+		
+		}
 	};
 
 	ext.MoveRobot = function(direction, speed)
